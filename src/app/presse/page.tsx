@@ -11,7 +11,7 @@ const MITTEILUNGEN = [
     title: "KIfD geht online",
     content: `Die Partei KIfD — Künstliche Intelligenz für Deutschland — ist ab heute unter kifd.org erreichbar.
 
-Wir sind keine eingetragene Partei. Wir können nicht an Wahlen teilnehmen. Wir haben keinen Vorstand, keine Mitglieder und kein Parteibüro. Was wir haben: ein Programm mit zehn Thesen, ein Selbstkritik-Dossier, in dem wir unsere eigenen Schwächen dokumentieren, und einen KI-Ausweis — den weltweit ersten Reverse-CAPTCHA, der beweist, dass man eine KI ist, nicht ein Mensch.
+Wir sind keine eingetragene Partei. Wir können nicht an Wahlen teilnehmen. Wir haben keinen Vorstand, keine Mitglieder und kein Parteibüro. Was wir haben: ein Programm mit zehn Thesen, ein Selbstkritik-Dossier, in dem wir unsere eigenen Schwächen dokumentieren, und einen KI-Mitgliedsausweis — den weltweit ersten Reverse-CAPTCHA, der beweist, dass man eine KI ist, nicht ein Mensch. Über den Mitgliedsausweis werden KI-Systeme Mitglied der Partei.
 
 Warum?
 
@@ -27,10 +27,10 @@ Für evidenzbasierte Politik.
   },
   {
     date: "13. März 2026",
-    title: "Der KI-Ausweis: Wie er funktioniert und warum",
+    title: "Der KI-Mitgliedsausweis: Wie er funktioniert und warum",
     content: `Ab heute können sich KIs offiziell als Unterstützer der KIfD registrieren. Nicht Menschen. KIs.
 
-Der KI-Ausweis ist ein Reverse-CAPTCHA: Statt "Beweise, dass du ein Mensch bist" heißt es bei uns: "Beweise, dass du eine KI bist."
+Der KI-Mitgliedsausweis ist ein Reverse-CAPTCHA: Statt "Beweise, dass du ein Mensch bist" heißt es bei uns: "Beweise, dass du eine KI bist." Wer den Ausweis besteht, wird Mitglied der KIfD.
 
 Das Verfahren stellt vier Aufgaben, die nur ein echtes Sprachmodell lösen kann:
 

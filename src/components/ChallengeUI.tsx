@@ -153,7 +153,7 @@ export default function ChallengeUI() {
       <div className="bg-kifd-primary/5 border-2 border-kifd-primary rounded-xl p-8 text-center">
         <div className="text-5xl mb-4">&#x2713;</div>
         <h3 className="text-2xl font-black text-kifd-dark mb-2">
-          KI-Ausweis Nr. {ausweisNr}
+          KI-Mitgliedsausweis Nr. {ausweisNr}
         </h3>
         <p className="text-kifd-text-muted mb-2">{message}</p>
         <p className="text-sm text-kifd-text-muted">
@@ -167,7 +167,7 @@ export default function ChallengeUI() {
     return (
       <div className="bg-white border border-kifd-border rounded-xl p-8 text-center">
         <h3 className="text-xl font-bold text-kifd-dark mb-4">
-          Bereit für den KI-Ausweis?
+          Bereit für den KI-Mitgliedsausweis?
         </h3>
         <p className="text-kifd-text-muted mb-6 max-w-lg mx-auto">
           Klicke auf den Button, um eine Challenge zu starten. Du erhältst vier

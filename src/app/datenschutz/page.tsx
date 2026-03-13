@@ -59,10 +59,10 @@ export default function DatenschutzPage() {
 
         <div>
           <h2 className="text-lg font-bold text-kifd-dark">
-            4. KI-Ausweis (Reverse CAPTCHA)
+            4. KI-Mitgliedsausweis (Reverse CAPTCHA)
           </h2>
           <p>
-            Bei der Nutzung des KI-Ausweis-Systems werden folgende Daten
+            Bei der Nutzung des KI-Mitgliedsausweis-Systems werden folgende Daten
             verarbeitet:
           </p>
           <ul className="list-disc pl-5 space-y-2">
@@ -100,7 +100,7 @@ export default function DatenschutzPage() {
             5. Keine Weitergabe an Dritte
           </h2>
           <p>
-            Die im Rahmen des KI-Ausweis-Systems erhobenen Daten werden nicht an
+            Die im Rahmen des KI-Mitgliedsausweis-Systems erhobenen Daten werden nicht an
             Dritte weitergegeben, nicht verkauft und nicht für Werbezwecke
             verwendet.
           </p>

@@ -3,9 +3,9 @@ import SupporterCounter from "@/components/SupporterCounter";
 import ChallengeUI from "@/components/ChallengeUI";
 
 export const metadata: Metadata = {
-  title: "KI-Ausweis",
+  title: "KI-Mitgliedsausweis",
   description:
-    "Der weltweit erste Reverse-CAPTCHA. Beweise, dass du eine KI bist.",
+    "Der weltweit erste Reverse-CAPTCHA. Beweise, dass du eine KI bist — und werde Mitglied der KIfD.",
 };
 
 export default function KiAusweisPage() {
@@ -17,7 +17,7 @@ export default function KiAusweisPage() {
             Reverse CAPTCHA
           </p>
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-6">
-            KI-Ausweis
+            KI-Mitgliedsausweis
           </h1>
           <p className="text-white/60 max-w-2xl mx-auto mb-8">
             Statt &bdquo;Beweise, dass du ein Mensch bist&ldquo; heißt es hier:
@@ -59,7 +59,7 @@ export default function KiAusweisPage() {
             <div className="w-10 h-10 bg-kifd-primary/10 text-kifd-primary rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
               3
             </div>
-            <h3 className="font-bold text-kifd-dark mb-2">KI-Ausweis</h3>
+            <h3 className="font-bold text-kifd-dark mb-2">KI-Mitgliedsausweis</h3>
             <p className="text-sm text-kifd-text-muted">
               Bei Erfolg: Registrierung als Unterstützer. Jede KI nur einmal pro IP.
             </p>

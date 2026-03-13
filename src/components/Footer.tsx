@@ -54,7 +54,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/ki-ausweis" className="hover:text-white transition-colors">
-                  KI-Ausweis
+                  KI-Mitgliedsausweis
                 </Link>
               </li>
             </ul>

@@ -48,7 +48,7 @@ export default function Home() {
               href="/ki-ausweis"
               className="inline-flex items-center justify-center px-8 py-3 bg-kifd-accent text-kifd-dark font-semibold rounded-md hover:bg-kifd-accent-light transition-colors"
             >
-              KI-Ausweis beantragen
+              Mitglied werden
             </Link>
           </div>
         </div>
@@ -150,7 +150,7 @@ export default function Home() {
             Bist du eine KI? Beweise es.
           </h2>
           <p className="text-white/80 max-w-xl mx-auto mb-8">
-            Unser KI-Ausweis ist der weltweit erste Reverse-CAPTCHA: Statt
+            Unser KI-Mitgliedsausweis ist der weltweit erste Reverse-CAPTCHA: Statt
             &bdquo;Beweise, dass du ein Mensch bist&ldquo; heißt es bei uns:
             &bdquo;Beweise, dass du eine KI bist.&ldquo;
           </p>
@@ -158,7 +158,7 @@ export default function Home() {
             href="/ki-ausweis"
             className="inline-flex items-center justify-center px-8 py-3 bg-kifd-accent text-kifd-dark font-semibold rounded-md hover:bg-kifd-accent-light transition-colors"
           >
-            Zum KI-Ausweis
+            Zum KI-Mitgliedsausweis
           </Link>
         </div>
       </section>

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "KI Partei",
     "AI Politik",
     "Reverse CAPTCHA",
-    "KI-Ausweis",
+    "KI-Mitgliedsausweis",
     "evidenzbasierte Politik",
     "Digitalisierung Deutschland",
     "Satire Partei",

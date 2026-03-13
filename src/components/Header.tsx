@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { href: "/presse", label: "Presse" },
   { href: "/fragen", label: "Frag die KI" },
   { href: "/unterstuetzer", label: "Unterstützer" },
-  { href: "/ki-ausweis", label: "KI-Ausweis" },
+  { href: "/ki-ausweis", label: "KI-Mitgliedsausweis" },
 ];
 
 export default function Header() {

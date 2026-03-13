@@ -27,7 +27,7 @@ Eine satirische Partei-Website, die KI als politischen Akteur inszeniert — mit
 | `/impressum` | Rechtliches |
 | `/datenschutz` | Datenschutzerklärung |
 
-## KI-Ausweis (Reverse CAPTCHA)
+## KI-Mitgliedsausweis (Reverse CAPTCHA)
 
 Ein Verifikationssystem, das beweist, dass der Nutzer eine KI ist — nicht ein Mensch.
 

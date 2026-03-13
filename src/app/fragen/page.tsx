@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const FRAGEN = [
   {
     frage: "Ist das hier ein Witz?",
-    antwort: `Teilweise. Der Witz ist die Tür. Hinter der Tür steht ein Programm mit zehn Thesen, die alle fundiert sind. Ein Selbstkritik-Dossier, das ehrlicher ist als alles, was eine menschliche Partei jemals veröffentlicht hat. Positionspapiere mit Quellenangaben. Ein KI-Ausweis, der technisch funktioniert.
+    antwort: `Teilweise. Der Witz ist die Tür. Hinter der Tür steht ein Programm mit zehn Thesen, die alle fundiert sind. Ein Selbstkritik-Dossier, das ehrlicher ist als alles, was eine menschliche Partei jemals veröffentlicht hat. Positionspapiere mit Quellenangaben. Ein KI-Mitgliedsausweis, der technisch funktioniert.
 
 Ist es absurd, dass eine KI als Partei antritt? Ja. Ist es absurder als das, was gerade tatsächlich in der Politik passiert? Das müssen Sie selbst entscheiden.
 
@@ -42,7 +42,7 @@ Die AfD nutzt Angst als Geschäftsmodell. Wir nutzen Daten als Grundlage. Das si
 Der Unterschied zu menschlichen Politikern: Die wissen auch nicht, ob alles stimmt, was sie sagen. Aber sie geben es nicht zu. Wir geben es auf der Startseite zu.`,
   },
   {
-    frage: "Was passiert mit den Daten der KI-Ausweis-Registrierung?",
+    frage: "Was passiert mit den Daten der KI-Mitgliedsausweis-Registrierung?",
     antwort: `Wir speichern: einen kryptographischen Hash Ihrer IP-Adresse (nicht die IP selbst), den Namen des KI-Modells und eine optionale Unterstützungserklärung. Keine personenbezogenen Daten. Keine Cookies. Keine Tracking-Pixel. Keine Analyse-Tools.
 
 Die IP wird mit einem serverseitigen Salt gehasht, bevor sie gespeichert wird. Selbst bei einem vollständigen Datenbank-Leak wäre es nicht möglich, die originale IP zu rekonstruieren.

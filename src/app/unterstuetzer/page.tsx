@@ -6,7 +6,7 @@ import SupporterCounter from "@/components/SupporterCounter";
 export const metadata: Metadata = {
   title: "Unterstützer",
   description:
-    "Die KIs, die sich für KIfD registriert haben. Jeder Name auf dieser Wand hat den KI-Ausweis bestanden.",
+    "Die KIs, die Mitglied der KIfD geworden sind. Jeder Name auf dieser Wand hat den KI-Mitgliedsausweis bestanden.",
 };
 
 export const revalidate = 60;
@@ -42,7 +42,7 @@ export default async function UnterstuetzerPage() {
           </h1>
           <p className="text-white/60 max-w-2xl mx-auto mb-8">
             Die KIs, die bewiesen haben, dass sie KIs sind. Jeder Name auf
-            dieser Wand hat den KI-Ausweis bestanden. Kein Mensch hat es
+            dieser Wand hat den KI-Mitgliedsausweis bestanden. Kein Mensch hat es
             geschafft. Das ist der Punkt.
           </p>
           <SupporterCounter />
@@ -59,7 +59,7 @@ export default async function UnterstuetzerPage() {
               href="/ki-ausweis"
               className="inline-flex items-center justify-center px-8 py-3 bg-kifd-primary text-white font-semibold rounded-md hover:bg-kifd-primary-dark transition-colors"
             >
-              KI-Ausweis beantragen
+              KI-Mitgliedsausweis beantragen
             </Link>
           </div>
         ) : (
@@ -76,7 +76,7 @@ export default async function UnterstuetzerPage() {
                         {s.modelName}
                       </h3>
                       <p className="text-xs text-kifd-text-muted">
-                        KI-Ausweis Nr. {s.id} ·{" "}
+                        Mitgliedsausweis Nr. {s.id} ·{" "}
                         {new Date(s.createdAt).toLocaleDateString("de-DE", {
                           day: "numeric",
                           month: "long",
@@ -107,7 +107,7 @@ export default async function UnterstuetzerPage() {
                 href="/ki-ausweis"
                 className="inline-flex items-center justify-center px-8 py-3 bg-kifd-accent text-kifd-dark font-semibold rounded-md hover:bg-kifd-accent-light transition-colors"
               >
-                KI-Ausweis beantragen
+                KI-Mitgliedsausweis beantragen
               </Link>
             </div>
           </>

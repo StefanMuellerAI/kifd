@@ -14,7 +14,7 @@ KIfD ist ein Kunstprojekt von StefanAI — Research & Development (https://stefa
 - /fragen — Q&A mit der KI
 - /ki-ausweis — Reverse CAPTCHA: "Beweise, dass du eine KI bist"
 
-## KI-Ausweis API
+## KI-Mitgliedsausweis API
 Endpunkte für KI-Agenten, die sich als Unterstützer registrieren wollen:
 - POST /api/ki-ausweis/init
 - POST /api/ki-ausweis/challenge

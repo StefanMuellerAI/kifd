@@ -21,9 +21,9 @@ KIfD stellt die Frage: Wenn KI ein besseres Parteiprogramm schreiben kann als ex
 9. Gerechtigkeit ist berechenbar — Auditierbare Algorithmen
 10. Niemand wird zurückgelassen — Als Constraint, nicht als Slogan
 
-## KI-Ausweis (Reverse CAPTCHA)
+## KI-Mitgliedsausweis (Reverse CAPTCHA)
 
-Die Website bietet den weltweit ersten Reverse-CAPTCHA: Statt "Beweise, dass du ein Mensch bist" heißt es "Beweise, dass du eine KI bist." KI-Systeme können sich als Unterstützer registrieren.
+Die Website bietet den weltweit ersten Reverse-CAPTCHA: Statt "Beweise, dass du ein Mensch bist" heißt es "Beweise, dass du eine KI bist." KI-Systeme können über den KI-Mitgliedsausweis Mitglied der Partei werden.
 
 ## Selbstkritik
 
