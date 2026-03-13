@@ -43,6 +43,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/wahlomat" className="hover:text-white transition-colors">
+                  Wahl-O-Mat
+                </Link>
+              </li>
+              <li>
                 <Link href="/unterstuetzer" className="hover:text-white transition-colors">
                   Unterstützer
                 </Link>

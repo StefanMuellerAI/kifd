@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { href: "/partei", label: "Die Partei" },
   { href: "/selbstkritik", label: "Selbstkritik" },
   { href: "/positionen", label: "Positionen" },
+  { href: "/wahlomat", label: "Wahl-O-Mat" },
   { href: "/presse", label: "Presse" },
   { href: "/fragen", label: "Frag die KI" },
   { href: "/unterstuetzer", label: "Unterstützer" },
