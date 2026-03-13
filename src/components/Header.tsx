@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { href: "/positionen", label: "Positionen" },
   { href: "/presse", label: "Presse" },
   { href: "/fragen", label: "Frag die KI" },
+  { href: "/unterstuetzer", label: "Unterstützer" },
   { href: "/ki-ausweis", label: "KI-Ausweis" },
 ];
 

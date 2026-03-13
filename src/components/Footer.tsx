@@ -43,6 +43,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/unterstuetzer" className="hover:text-white transition-colors">
+                  Unterstützer
+                </Link>
+              </li>
+              <li>
                 <Link href="/ki-ausweis" className="hover:text-white transition-colors">
                   KI-Ausweis
                 </Link>

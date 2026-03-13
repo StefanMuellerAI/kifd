@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/positionen`, changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${BASE}/presse`, changeFrequency: "weekly" as const, priority: 0.7 },
     { url: `${BASE}/fragen`, changeFrequency: "monthly" as const, priority: 0.7 },
+    { url: `${BASE}/unterstuetzer`, changeFrequency: "daily" as const, priority: 0.8 },
     { url: `${BASE}/ki-ausweis`, changeFrequency: "monthly" as const, priority: 0.9 },
     { url: `${BASE}/impressum`, changeFrequency: "yearly" as const, priority: 0.3 },
     { url: `${BASE}/datenschutz`, changeFrequency: "yearly" as const, priority: 0.3 },
