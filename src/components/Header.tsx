@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { href: "/presse", label: "Presse" },
   { href: "/fragen", label: "Frag die KI" },
   { href: "/unterstuetzer", label: "Unterstützer" },
-  { href: "/ki-ausweis", label: "KI-Mitgliedsausweis" },
+  { href: "/ki-ausweis", label: "Mitgliedsausweis" },
 ];
 
 export default function Header() {
@@ -26,17 +26,17 @@ export default function Header() {
             <span className="text-2xl font-black tracking-tight text-kifd-accent">
               KIfD
             </span>
-            <span className="hidden sm:inline text-sm text-white/60 border-l border-white/20 pl-3">
+            <span className="hidden xl:inline text-sm text-white/60 border-l border-white/20 pl-3">
               Künstliche Intelligenz für Deutschland
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-3 py-2 text-sm text-white/80 hover:text-white hover:bg-white/10 rounded-md transition-colors"
+                className="px-2.5 py-2 text-[13px] text-white/80 hover:text-white hover:bg-white/10 rounded-md transition-colors whitespace-nowrap"
               >
                 {item.label}
               </Link>
@@ -45,7 +45,7 @@ export default function Header() {
 
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden p-2 text-white/80 hover:text-white"
+            className="xl:hidden p-2 text-white/80 hover:text-white"
             aria-label="Menü öffnen"
           >
             <svg
@@ -75,7 +75,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="lg:hidden border-t border-white/10 bg-kifd-dark">
+        <nav className="xl:hidden border-t border-white/10 bg-kifd-dark">
           <div className="px-4 py-3 space-y-1">
             {NAV_ITEMS.map((item) => (
               <Link
