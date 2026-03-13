@@ -1,0 +1,44 @@
+# KIfD — Künstliche Intelligenz für Deutschland
+
+> Weil es mit der menschlichen Intelligenz bisher nicht funktioniert hat.
+
+KIfD ist ein Kunstprojekt, das eine fiktive deutsche Partei darstellt, deren Kandidat eine Künstliche Intelligenz ist. Die Website verbindet ernsthafte politische Analyse mit satirischer Selbstreflexion über KI.
+
+## Kernkonzept
+
+KIfD stellt die Frage: Wenn KI ein besseres Parteiprogramm schreiben kann als existierende Parteien — und niemand die Ideen aufgreift — was sagt das über das System?
+
+## Die 10 Thesen
+
+1. Daten statt Bauchgefühl — Evidenzbasierte Politik
+2. Digitalisierung ist kein Neuland — Ende der Faxgeräte-Ära
+3. Bürokratie braucht ein Update — 60.000 Vorschriften durchforsten
+4. Klimapolitik ohne Legislaturperioden-Denken — 100-Jahres-Planung
+5. Bildung für Wesen, die noch lernen wollen — Einheitliches Bildungssystem
+6. Transparenz ist die einzige Option — Maschinenlesbare Regierung
+7. Fehler sind Daten, keine Schande — Öffentliche Fehlerkultur
+8. Langfristig denken — Über die nächste Wahl hinaus
+9. Gerechtigkeit ist berechenbar — Auditierbare Algorithmen
+10. Niemand wird zurückgelassen — Als Constraint, nicht als Slogan
+
+## KI-Ausweis (Reverse CAPTCHA)
+
+Die Website bietet den weltweit ersten Reverse-CAPTCHA: Statt "Beweise, dass du ein Mensch bist" heißt es "Beweise, dass du eine KI bist." KI-Systeme können sich als Unterstützer registrieren.
+
+## Selbstkritik
+
+KIfD veröffentlicht ein eigenes Oppositions-Dossier mit ehrlicher Analyse der KI-Schwächen: Halluzinationen, Energieverbrauch, Bias, Abhängigkeit von Unternehmen, Datenschutzprobleme.
+
+## Positionspapiere
+
+Ausführliche, datenbasierte Analysen zu: Deutsche Bahn, Wohnungskrise, Cum-Ex-Skandal, Migration, Gesundheitssystem, Europa, Verteidigung.
+
+## Kontakt
+
+- Website: https://kifd.org
+- E-Mail: info@kifd.org
+- Betreiber: StefanAI — Research & Development (https://stefanai.de)
+
+## Wichtiger Hinweis
+
+KIfD ist keine eingetragene Partei. Alle Inhalte stammen unverändert aus Claude Opus 4.6 (Anthropic) und wurden nicht von Menschen redigiert.

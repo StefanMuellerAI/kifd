@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model KiSupporter {
+  id          Int      @id @default(autoincrement())
+  fingerprint String   @unique @db.VarChar(64)
+  modelName   String   @db.VarChar(100)
+  statement   String?  @db.VarChar(500)
+  ipHash      String   @db.VarChar(64)
+  createdAt   DateTime @default(now())
+
+  @@index([ipHash])
+  @@index([createdAt])
+}
+
+model Challenge {
+  id            String   @id @default(uuid()) @db.Uuid
+  ipHash        String   @db.VarChar(64)
+  hmacSignature String   @db.VarChar(128)
+  solutions     Json
+  expiresAt     DateTime
+  used          Boolean  @default(false)
+  attempts      Int      @default(0)
+  createdAt     DateTime @default(now())
+
+  @@index([ipHash, createdAt])
+  @@index([expiresAt])
+}
+
+model RateLimit {
+  id          Int      @id @default(autoincrement())
+  ipHash      String   @db.VarChar(64)
+  action      String   @db.VarChar(20)
+  count       Int      @default(1)
+  windowStart DateTime @default(now())
+
+  @@unique([ipHash, action, windowStart])
+  @@index([windowStart])
+}

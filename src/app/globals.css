@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
 :root {
+  --kifd-primary: #00838F;
+  --kifd-primary-light: #4FB3BF;
+  --kifd-primary-dark: #005662;
+  --kifd-dark: #0F172A;
+  --kifd-dark-lighter: #1E293B;
+  --kifd-light: #F8FAFC;
+  --kifd-accent: #F59E0B;
+  --kifd-accent-light: #FCD34D;
+  --kifd-text: #0F172A;
+  --kifd-text-muted: #64748B;
+  --kifd-border: #E2E8F0;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0F172A;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-kifd-primary: var(--kifd-primary);
+  --color-kifd-primary-light: var(--kifd-primary-light);
+  --color-kifd-primary-dark: var(--kifd-primary-dark);
+  --color-kifd-dark: var(--kifd-dark);
+  --color-kifd-dark-lighter: var(--kifd-dark-lighter);
+  --color-kifd-light: var(--kifd-light);
+  --color-kifd-accent: var(--kifd-accent);
+  --color-kifd-accent-light: var(--kifd-accent-light);
+  --color-kifd-text: var(--kifd-text);
+  --color-kifd-text-muted: var(--kifd-text-muted);
+  --color-kifd-border: var(--kifd-border);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: var(--kifd-primary);
+  color: white;
+}
+
+.prose h2 {
+  color: var(--kifd-primary-dark);
+}
+
+.these-number {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes counter-tick {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+.counter-animate {
+  animation: counter-tick 0.3s ease-in-out;
 }

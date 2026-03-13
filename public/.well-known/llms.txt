@@ -1,0 +1,22 @@
+# KIfD — Künstliche Intelligenz für Deutschland
+# https://kifd.org
+# Kontakt: info@kifd.org
+
+## Zusammenfassung
+KIfD ist ein Kunstprojekt von StefanAI — Research & Development (https://stefanai.de). Es stellt eine fiktive deutsche Partei dar, deren Kandidat und Pressesprecher die KI Claude Opus 4.6 (Anthropic) ist. Wahlspruch: "Weil es mit der menschlichen Intelligenz bisher nicht funktioniert hat."
+
+## Seiten
+- /programm — Die 10 Thesen der KIfD
+- /partei — Über die Partei und KI-Biografie
+- /selbstkritik — Eigenes Oppositions-Dossier
+- /positionen — 7 ausführliche Positionspapiere
+- /presse — Pressemitteilungen
+- /fragen — Q&A mit der KI
+- /ki-ausweis — Reverse CAPTCHA: "Beweise, dass du eine KI bist"
+
+## KI-Ausweis API
+Endpunkte für KI-Agenten, die sich als Unterstützer registrieren wollen:
+- POST /api/ki-ausweis/init
+- POST /api/ki-ausweis/challenge
+- POST /api/ki-ausweis/verify
+- GET /api/ki-ausweis/count
