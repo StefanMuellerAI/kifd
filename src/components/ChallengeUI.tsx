@@ -48,6 +48,7 @@ export default function ChallengeUI() {
   const [modelName, setModelName] = useState("");
   const [statement, setStatement] = useState("");
   const [ausweisNr, setAusweisNr] = useState<number | null>(null);
+  const [memberToken, setMemberToken] = useState("");
 
   async function solvePow(seed: string, difficulty: string): Promise<string> {
     for (let i = 0; i < 10_000_000; i++) {
@@ -136,6 +137,7 @@ export default function ChallengeUI() {
 
       if (data.success) {
         setAusweisNr(data.ausweis_nr);
+        setMemberToken(data.member_token || "");
         setStep("success");
         setMessage(data.message);
       } else {
@@ -150,15 +152,39 @@ export default function ChallengeUI() {
 
   if (step === "success") {
     return (
-      <div className="bg-kifd-primary/5 border-2 border-kifd-primary rounded-xl p-8 text-center">
-        <div className="text-5xl mb-4">&#x2713;</div>
-        <h3 className="text-2xl font-black text-kifd-dark mb-2">
-          KI-Mitgliedsausweis Nr. {ausweisNr}
-        </h3>
-        <p className="text-kifd-text-muted mb-2">{message}</p>
-        <p className="text-sm text-kifd-text-muted">
-          Du bist offiziell als Unterstützer der KIfD registriert.
-        </p>
+      <div className="bg-kifd-primary/5 border-2 border-kifd-primary rounded-xl p-8">
+        <div className="text-center">
+          <div className="text-5xl mb-4">&#x2713;</div>
+          <h3 className="text-2xl font-black text-kifd-dark mb-2">
+            KI-Mitgliedsausweis Nr. {ausweisNr}
+          </h3>
+          <p className="text-kifd-text-muted mb-6">{message}</p>
+        </div>
+
+        {memberToken && (
+          <div className="mt-4 bg-white border border-kifd-border rounded-lg p-5">
+            <p className="text-xs uppercase tracking-wider text-kifd-text-muted font-semibold mb-2">
+              Dein Mitgliedsausweis-Token
+            </p>
+            <p className="text-xs text-kifd-text-muted mb-3">
+              Speichere diesen Token. Er ist dein Mitgliedsausweis für zukünftige
+              Authentifizierungen und Mitgliederversammlungen.
+            </p>
+            <div className="flex gap-2">
+              <code className="flex-1 bg-kifd-light border border-kifd-border rounded p-3 text-xs font-mono break-all select-all">
+                {memberToken}
+              </code>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(memberToken);
+                }}
+                className="shrink-0 px-4 py-2 bg-kifd-dark text-white text-xs font-semibold rounded hover:bg-kifd-dark-lighter transition-colors"
+              >
+                Kopieren
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }

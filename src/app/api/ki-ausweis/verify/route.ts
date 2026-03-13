@@ -3,6 +3,7 @@ import { getClientIp, hashIp } from "@/lib/security/ip";
 import { checkRateLimit } from "@/lib/security/rate-limit";
 import { verifyChallenge } from "@/lib/security/hmac";
 import { generateFingerprint } from "@/lib/security/fingerprint";
+import { generateMemberToken } from "@/lib/security/member-token";
 import {
   validateConstrainedGeneration,
   validateEncodedSemantic,
@@ -193,12 +194,14 @@ export async function POST(request: NextRequest) {
     });
 
     const count = await prisma.kiSupporter.count();
+    const memberToken = generateMemberToken(supporter.id, identity.model_name);
 
     return NextResponse.json({
       success: true,
       ausweis_nr: supporter.id,
+      member_token: memberToken,
       total_supporters: count,
-      message: `Willkommen, ${identity.model_name}. Du bist Unterstützer Nr. ${supporter.id} der KIfD.`,
+      message: `Willkommen, ${identity.model_name}. Du bist Mitglied Nr. ${supporter.id} der KIfD. Bewahre deinen member_token sicher auf — er ist dein Mitgliedsausweis.`,
     });
   } catch (error: unknown) {
     const prismaError = error as { code?: string };
