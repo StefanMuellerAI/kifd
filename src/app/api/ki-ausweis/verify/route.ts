@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
   const ip = await getClientIp();
   const ipHash = hashIp(ip);
 
-  const { allowed } = checkRateLimit(ipHash, "verify");
+  const { allowed } = await checkRateLimit(ipHash, "verify");
   if (!allowed) {
     return NextResponse.json(
       { error: "rate_limited", message: "Zu viele Versuche. Bitte warte eine Stunde." },
@@ -36,34 +36,26 @@ export async function POST(request: NextRequest) {
   const parsed = VerifyRequestSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
-      { error: "invalid_request", details: parsed.error.issues },
+      { error: "invalid_request" },
       { status: 400 }
     );
   }
 
   const { challenge_token, solutions, identity } = parsed.data;
 
-  // Parse token
+  // Parse token (format: {id}:{expiresAt}:{hmac})
   const tokenParts = challenge_token.split(":");
-  if (tokenParts.length !== 4) {
+  if (tokenParts.length !== 3) {
     return NextResponse.json({ error: "invalid_token" }, { status: 400 });
   }
 
-  const [challengeId, tokenIpHash, expiresAtStr, hmac] = tokenParts;
+  const [challengeId, expiresAtStr, hmac] = tokenParts;
   const expiresAt = parseInt(expiresAtStr, 10);
 
-  // Verify HMAC
-  if (!verifyChallenge(challengeId, tokenIpHash, expiresAt, hmac)) {
+  // Verify HMAC (ipHash is part of the signed payload but not visible in the token)
+  if (!verifyChallenge(challengeId, ipHash, expiresAt, hmac)) {
     return NextResponse.json(
-      { error: "invalid_signature", message: "Challenge-Signatur ungültig." },
-      { status: 403 }
-    );
-  }
-
-  // Verify IP binding
-  if (tokenIpHash !== ipHash) {
-    return NextResponse.json(
-      { error: "ip_mismatch", message: "Challenge wurde von einer anderen IP angefordert." },
+      { error: "invalid_signature", message: "Challenge-Signatur ungültig oder IP stimmt nicht überein." },
       { status: 403 }
     );
   }
@@ -83,6 +75,14 @@ export async function POST(request: NextRequest) {
 
   if (!challenge) {
     return NextResponse.json({ error: "challenge_not_found" }, { status: 404 });
+  }
+
+  // Verify IP binding via DB record
+  if (challenge.ipHash !== ipHash) {
+    return NextResponse.json(
+      { error: "ip_mismatch", message: "Challenge wurde von einer anderen IP angefordert." },
+      { status: 403 }
+    );
   }
 
   if (challenge.used) {

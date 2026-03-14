@@ -1,6 +1,7 @@
 import { createHmac } from "crypto";
+import { requireEnv } from "./env";
 
-const SECRET = process.env.CHALLENGE_HMAC_SECRET || "fallback-dev-secret";
+const SECRET = requireEnv("CHALLENGE_HMAC_SECRET");
 
 export function signChallenge(challengeId: string, ipHash: string, expiresAt: number): string {
   const payload = `${challengeId}:${ipHash}:${expiresAt}`;

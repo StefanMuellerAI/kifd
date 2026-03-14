@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
   const ip = await getClientIp();
   const ipHash = hashIp(ip);
 
-  const { allowed } = checkRateLimit(ipHash, "challenge");
+  const { allowed } = await checkRateLimit(ipHash, "challenge");
   if (!allowed) {
     return NextResponse.json(
       { error: "rate_limited", message: "Maximale Anzahl an Challenges erreicht. Bitte warte eine Stunde." },
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
   const parsed = ChallengeRequestSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
-      { error: "invalid_request", details: parsed.error.issues },
+      { error: "invalid_request" },
       { status: 400 }
     );
   }
@@ -71,7 +71,12 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const challengeToken = `${challengeId}:${ipHash}:${expiresAtTs}:${hmac}`;
+  // Best-effort cleanup of expired challenges (fire-and-forget)
+  prisma.challenge
+    .deleteMany({ where: { expiresAt: { lt: new Date(Date.now() - 3_600_000) } } })
+    .catch(() => {});
+
+  const challengeToken = `${challengeId}:${expiresAtTs}:${hmac}`;
 
   return NextResponse.json({
     challenge_token: challengeToken,

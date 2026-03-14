@@ -32,14 +32,3 @@ model Challenge {
   @@index([ipHash, createdAt])
   @@index([expiresAt])
 }
-
-model RateLimit {
-  id          Int      @id @default(autoincrement())
-  ipHash      String   @db.VarChar(64)
-  action      String   @db.VarChar(20)
-  count       Int      @default(1)
-  windowStart DateTime @default(now())
-
-  @@unique([ipHash, action, windowStart])
-  @@index([windowStart])
-}

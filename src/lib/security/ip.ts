@@ -1,7 +1,8 @@
 import { createHash } from "crypto";
 import { headers } from "next/headers";
+import { requireEnv } from "./env";
 
-const SALT = process.env.IP_HASH_SALT || "fallback-ip-salt";
+const SALT = requireEnv("IP_HASH_SALT");
 
 export async function getClientIp(): Promise<string> {
   const h = await headers();

@@ -1,7 +1,9 @@
 import { createHmac } from "crypto";
+import { requireEnv } from "./env";
 
-const SECRET = process.env.CHALLENGE_HMAC_SECRET || "fallback-dev-secret";
+const SECRET = requireEnv("CHALLENGE_HMAC_SECRET");
 const TOKEN_VERSION = "v1";
+const TOKEN_MAX_AGE_S = 2 * 365 * 24 * 3600; // 2 years
 
 export function generateMemberToken(ausweisNr: number, modelName: string): string {
   const issuedAt = Math.floor(Date.now() / 1000);
@@ -42,6 +44,9 @@ export function verifyMemberToken(token: string): MemberTokenData | null {
     const issuedAt = parseInt(issuedAtStr, 10);
 
     if (isNaN(ausweisNr) || isNaN(issuedAt) || !modelName) return null;
+
+    const nowS = Math.floor(Date.now() / 1000);
+    if (nowS - issuedAt > TOKEN_MAX_AGE_S) return null;
 
     return { ausweisNr, modelName, issuedAt };
   } catch {

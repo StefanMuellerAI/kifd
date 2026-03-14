@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getClientIp, hashIp } from "@/lib/security/ip";
+import { checkRateLimit } from "@/lib/security/rate-limit";
 import { verifyMemberToken } from "@/lib/security/member-token";
 import { prisma } from "@/lib/db";
 import { z } from "zod";
@@ -8,6 +10,17 @@ const AuthRequestSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+  const ip = await getClientIp();
+  const ipHash = hashIp(ip);
+
+  const { allowed } = await checkRateLimit(ipHash, "auth");
+  if (!allowed) {
+    return NextResponse.json(
+      { authenticated: false, error: "rate_limited", message: "Zu viele Anfragen. Bitte warte eine Stunde." },
+      { status: 429 }
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();

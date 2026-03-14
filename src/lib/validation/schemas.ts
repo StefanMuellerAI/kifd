@@ -20,7 +20,11 @@ export const VerifyRequestSchema = z.object({
       explanation: z.string().min(1).max(2000),
     }),
     crosslingual: z.object({
-      translations: z.record(z.string(), z.string().min(1).max(500)),
+      translations: z
+        .record(z.string(), z.string().min(1).max(500))
+        .refine((obj) => Object.keys(obj).length <= 10, {
+          message: "Too many translation keys",
+        }),
     }),
   }),
   identity: z.object({

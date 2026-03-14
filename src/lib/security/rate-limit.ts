@@ -1,36 +1,31 @@
-const store = new Map<string, { count: number; resetAt: number }>();
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
-const LIMITS: Record<string, { max: number; windowMs: number }> = {
-  challenge: { max: 3, windowMs: 3600_000 },
-  verify: { max: 10, windowMs: 3600_000 },
-  init: { max: 10, windowMs: 3600_000 },
-  count: { max: 60, windowMs: 60_000 },
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
+
+const limiters: Record<string, Ratelimit> = {
+  init: new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(10, "1 h"), prefix: "rl:init" }),
+  challenge: new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(3, "1 h"), prefix: "rl:challenge" }),
+  verify: new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(10, "1 h"), prefix: "rl:verify" }),
+  count: new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(60, "1 m"), prefix: "rl:count" }),
+  auth: new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(20, "1 h"), prefix: "rl:auth" }),
+  supporters: new Ratelimit({ redis, limiter: Ratelimit.slidingWindow(30, "1 m"), prefix: "rl:supporters" }),
 };
 
-export function checkRateLimit(ipHash: string, action: string): { allowed: boolean; remaining: number } {
-  const limit = LIMITS[action] || { max: 30, windowMs: 60_000 };
-  const key = `${ipHash}:${action}`;
-  const now = Date.now();
+const fallbackLimiter = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(30, "1 m"),
+  prefix: "rl:default",
+});
 
-  const entry = store.get(key);
-  if (!entry || now > entry.resetAt) {
-    store.set(key, { count: 1, resetAt: now + limit.windowMs });
-    return { allowed: true, remaining: limit.max - 1 };
-  }
-
-  if (entry.count >= limit.max) {
-    return { allowed: false, remaining: 0 };
-  }
-
-  entry.count++;
-  return { allowed: true, remaining: limit.max - entry.count };
-}
-
-if (typeof setInterval !== "undefined") {
-  setInterval(() => {
-    const now = Date.now();
-    for (const [key, entry] of store) {
-      if (now > entry.resetAt) store.delete(key);
-    }
-  }, 60_000);
+export async function checkRateLimit(
+  ipHash: string,
+  action: string
+): Promise<{ allowed: boolean; remaining: number }> {
+  const limiter = limiters[action] || fallbackLimiter;
+  const { success, remaining } = await limiter.limit(ipHash);
+  return { allowed: success, remaining };
 }

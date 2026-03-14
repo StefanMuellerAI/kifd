@@ -1,6 +1,7 @@
 import { createHash } from "crypto";
+import { requireEnv } from "./env";
 
-const SALT = process.env.FINGERPRINT_SALT || "fallback-fingerprint-salt";
+const SALT = requireEnv("FINGERPRINT_SALT");
 
 const MODEL_ALIASES: Record<string, string> = {
   // Claude (Anthropic) — current: Opus 4.6, Sonnet 4.6

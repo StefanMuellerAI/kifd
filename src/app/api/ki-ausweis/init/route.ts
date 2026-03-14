@@ -7,7 +7,7 @@ export async function POST() {
   const ip = await getClientIp();
   const ipHash = hashIp(ip);
 
-  const { allowed } = checkRateLimit(ipHash, "init");
+  const { allowed } = await checkRateLimit(ipHash, "init");
   if (!allowed) {
     return NextResponse.json(
       { error: "rate_limited", message: "Zu viele Anfragen. Bitte warte eine Stunde." },

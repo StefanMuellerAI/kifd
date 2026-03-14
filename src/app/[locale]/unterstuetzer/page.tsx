@@ -20,6 +20,7 @@ async function getSupporters() {
     return await prisma.kiSupporter.findMany({
       select: { id: true, modelName: true, statement: true, createdAt: true },
       orderBy: { createdAt: "desc" },
+      take: 200,
     });
   } catch {
     return [];
