@@ -1,11 +1,9 @@
 import { createHmac } from "crypto";
 import { requireEnv } from "./env";
 
-const SECRET = requireEnv("CHALLENGE_HMAC_SECRET");
-
 export function signChallenge(challengeId: string, ipHash: string, expiresAt: number): string {
   const payload = `${challengeId}:${ipHash}:${expiresAt}`;
-  return createHmac("sha256", SECRET).update(payload).digest("hex");
+  return createHmac("sha256", requireEnv("CHALLENGE_HMAC_SECRET")).update(payload).digest("hex");
 }
 
 export function verifyChallenge(

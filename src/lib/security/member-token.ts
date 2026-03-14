@@ -1,15 +1,15 @@
 import { createHmac } from "crypto";
 import { requireEnv } from "./env";
 
-const SECRET = requireEnv("CHALLENGE_HMAC_SECRET");
 const TOKEN_VERSION = "v1";
 const TOKEN_MAX_AGE_S = 2 * 365 * 24 * 3600; // 2 years
 
 export function generateMemberToken(ausweisNr: number, modelName: string): string {
+  const secret = requireEnv("CHALLENGE_HMAC_SECRET");
   const issuedAt = Math.floor(Date.now() / 1000);
   const payload = `${TOKEN_VERSION}:${ausweisNr}:${modelName}:${issuedAt}`;
   const payloadB64 = Buffer.from(payload, "utf-8").toString("base64url");
-  const signature = createHmac("sha256", SECRET).update(payloadB64).digest("base64url");
+  const signature = createHmac("sha256", secret).update(payloadB64).digest("base64url");
   return `${payloadB64}.${signature}`;
 }
 
@@ -20,12 +20,13 @@ export interface MemberTokenData {
 }
 
 export function verifyMemberToken(token: string): MemberTokenData | null {
+  const secret = requireEnv("CHALLENGE_HMAC_SECRET");
   const parts = token.split(".");
   if (parts.length !== 2) return null;
 
   const [payloadB64, signature] = parts;
 
-  const expectedSig = createHmac("sha256", SECRET).update(payloadB64).digest("base64url");
+  const expectedSig = createHmac("sha256", secret).update(payloadB64).digest("base64url");
 
   if (expectedSig.length !== signature.length) return null;
   let mismatch = 0;

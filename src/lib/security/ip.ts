@@ -2,8 +2,6 @@ import { createHash } from "crypto";
 import { headers } from "next/headers";
 import { requireEnv } from "./env";
 
-const SALT = requireEnv("IP_HASH_SALT");
-
 export async function getClientIp(): Promise<string> {
   const h = await headers();
   return (
@@ -14,5 +12,5 @@ export async function getClientIp(): Promise<string> {
 }
 
 export function hashIp(ip: string): string {
-  return createHash("sha256").update(`${ip}:${SALT}`).digest("hex");
+  return createHash("sha256").update(`${ip}:${requireEnv("IP_HASH_SALT")}`).digest("hex");
 }

@@ -4,10 +4,11 @@ import { requireEnv } from "./env";
 const DIFFICULTY = "0000";
 const POW_TTL_MS = 120_000;
 
-const HMAC_SECRET = requireEnv("CHALLENGE_HMAC_SECRET");
-
 function signSeed(timestamp: number, random: string): string {
-  return createHmac("sha256", HMAC_SECRET).update(`${timestamp}:${random}`).digest("hex").slice(0, 16);
+  return createHmac("sha256", requireEnv("CHALLENGE_HMAC_SECRET"))
+    .update(`${timestamp}:${random}`)
+    .digest("hex")
+    .slice(0, 16);
 }
 
 /**

@@ -1,8 +1,6 @@
 import { createHash } from "crypto";
 import { requireEnv } from "./env";
 
-const SALT = requireEnv("FINGERPRINT_SALT");
-
 const MODEL_ALIASES: Record<string, string> = {
   // Claude (Anthropic) — current: Opus 4.6, Sonnet 4.6
   "claude-opus-4.6": "claude-opus-4.6",
@@ -58,5 +56,5 @@ export function normalizeModelName(name: string): string {
 
 export function generateFingerprint(ipHash: string, modelName: string): string {
   const normalized = normalizeModelName(modelName);
-  return createHash("sha256").update(`${ipHash}:${normalized}:${SALT}`).digest("hex");
+  return createHash("sha256").update(`${ipHash}:${normalized}:${requireEnv("FINGERPRINT_SALT")}`).digest("hex");
 }
