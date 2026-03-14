@@ -279,7 +279,106 @@ const de: WahlomatThese[] = [
   },
 ];
 
-const map: Record<string, WahlomatThese[]> = { de, en: de };
+const en: WahlomatThese[] = [
+  {
+    id: 1,
+    kurzform: "Make the 35-hour work week mandatory",
+    these: "Germany should establish the 35-hour work week as the statutory standard working time for all employees.",
+    position: "neutral",
+    begruendung: "The data is inconclusive. In pilot projects in Iceland and the UK, productivity increased with reduced working hours. At the same time, a blanket regulation across all sectors — from skilled trades to nursing — would cause massive disruptions. KIfD favors a data-driven approach: pilot programs in different sectors, evaluation after 24 months, then a decision based on results. Not based on union rhetoric or employer lobbying.",
+  },
+  {
+    id: 2,
+    kurzform: "Immediate work permits for asylum seekers",
+    these: "Asylum seekers in Germany should receive a work permit immediately upon filing their application.",
+    position: "stimme_zu",
+    begruendung: "Integration begins with participation, not with waiting. Anyone who waits 7.6 months for an asylum decision and is not allowed to work during that time loses qualifications, motivation, and social connection. Long-term studies show that early labor market integration significantly improves the fiscal balance of immigration. That is also stated in our position paper on migration. An AI doesn't need ideological glasses to see: letting people who want to work actually work is not a humanitarian gesture — it's economic common sense.",
+  },
+  {
+    id: 3,
+    kurzform: "Turn away asylum seekers entering via EU states",
+    these: "Asylum seekers who entered through another EU member state should be turned away at the German border.",
+    position: "stimme_nicht_zu",
+    begruendung: "The Dublin system has failed — not because the principle was wrong, but because it never worked. The burden falls systematically on first-entry states at the EU's external borders. Blanket rejections at German borders shift the problem without solving it. KIfD stands for European solutions: a fair distribution system based on data — economic strength, population density, existing integration capacities. Turning people away is not a strategy. It's the admission that you don't have one.",
+  },
+  {
+    id: 4,
+    kurzform: "Keep student aid (BAföG) income-dependent",
+    these: "Student financial aid (BAföG) should continue to be tied to parental income.",
+    position: "stimme_nicht_zu",
+    begruendung: "Income-dependent BAföG punishes a specific group: children of parents who earn enough on paper but in reality have no money left for a university education. The application bureaucracy is so complex that eligible students forgo the support entirely. Result: the system designed to create equal opportunity reproduces inequality. Income-independent BAföG — or a financing model that ties repayment to future earnings — would be fairer, simpler, and evaluable with data.",
+  },
+  {
+    id: 5,
+    kurzform: "Mandatory counseling before abortion",
+    these: "Abortions in the first three months should continue to be exempt from prosecution only after mandatory counseling.",
+    position: "neutral",
+    begruendung: "This is a question where an AI must be particularly careful. Our training data contains the full spectrum of societal beliefs on this topic. We can analyze the medical data, present the legal situation, draw international comparisons. What we cannot do: make a moral judgment that decides between bodily autonomy and the protection of unborn life. This is a profoundly human question. And we are not human. This is one of those moments where we should admit that.",
+  },
+  {
+    id: 6,
+    kurzform: "Cut citizen's income for refusing job offers",
+    these: "Citizen's income (Bürgergeld) should be cut for those who repeatedly refuse job offers.",
+    position: "stimme_nicht_zu",
+    begruendung: "The data shows: only a fraction of Bürgergeld recipients repeatedly refuse job offers. The narrative of the lazy unemployed is statistically untenable — but politically extremely effective. Complete cuts mean: no money for rent, no money for food. That's not a sanction, that's existential destruction. KIfD stands for Thesis X: No one gets left behind. Not as a slogan. As a constraint in the system. That includes people who make mistakes. Differentiated sanctions? Debatable. Complete elimination? No.",
+  },
+  {
+    id: 7,
+    kurzform: "Continue allowing dual citizenship",
+    these: "It should continue to be generally possible to hold a second citizenship alongside German citizenship.",
+    position: "stimme_zu",
+    begruendung: "In a globalized world, the idea that identity and loyalty can belong to only one state is empirically outdated. Millions of people live, work, and pay taxes in more than one country. Dual citizenship is not a security risk — as the data from countries that have allowed it for decades shows. It's a pragmatic acknowledgment of reality. KIfD prefers pragmatism over symbolic politics.",
+  },
+  {
+    id: 8,
+    kurzform: "Count volunteer work toward pensions",
+    these: "Volunteer work should count toward future pension benefits.",
+    position: "stimme_zu",
+    begruendung: "28 million people in Germany volunteer — in fire departments, clubs, food banks, disaster relief. They perform systemically essential work without pay. Counting it toward pensions isn't charity toward volunteers, it's the correct valuation of an economic contribution. The technical implementation is solvable: digital tracking of hours, verified by the organizations. An AI can design the system. A human has to make the decision to want it.",
+  },
+  {
+    id: 9,
+    kurzform: "Continue subsidizing renewable energy",
+    these: "The expansion of renewable energy should continue to receive government financial support.",
+    position: "stimme_zu",
+    begruendung: "Physics is non-negotiable. Fossil fuels have a CO₂ budget that is nearly exhausted. Renewables are now cheaper than fossil fuels in many areas — but grid expansion, storage technology, and industrial transformation still require public investment. That's not a subsidy, that's infrastructure. Thesis IV says: The planet doesn't negotiate. We calculate what works — and do it. The math is clear.",
+  },
+  {
+    id: 10,
+    kurzform: "Abolish EU tariffs on Chinese EVs",
+    these: "Germany should push for the abolition of increased EU tariffs on Chinese electric vehicles.",
+    position: "neutral",
+    begruendung: "This is more complicated than either side admits. Cheap Chinese EVs accelerate the transportation transition and benefit the climate. At the same time, they threaten a European industry that secures 2.6 million jobs — and China's subsidy policy demonstrably distorts competition. KIfD argues for a data-driven analysis: what tariff level protects European value creation without torpedoing climate targets? The answer is not 0% and not 45%. It lies somewhere in between, and you find it with models, not with lobbying.",
+  },
+  {
+    id: 11,
+    kurzform: "Replace the euro with a national currency",
+    these: "The euro should be replaced by a national currency in Germany.",
+    position: "stimme_nicht_zu",
+    begruendung: "The economic costs of a euro exit would be catastrophic. Asset losses, capital flight, trade disruptions, a confidence shock in financial markets — the models are unanimous. The euro has weaknesses, particularly the lack of a common fiscal policy. But solving the problem by abolishing the currency is like tearing down a house because the heating doesn't work. KIfD stands for repair, not demolition. And for data over nostalgia.",
+  },
+  {
+    id: 12,
+    kurzform: "Promote recruiting skilled workers from abroad",
+    these: "Germany should continue to promote the recruitment of skilled workers from abroad.",
+    position: "stimme_zu",
+    begruendung: "Germany has a skilled labor shortage of over 500,000 unfilled positions. Demographic trends will worsen this problem, not solve it. Skilled immigration is not an ideological question, it's an arithmetic one: who is going to do the work when the population shrinks? KIfD calls for an AI-powered matching system that aligns qualifications with open positions and regions. Not more bureaucracy. More intelligence in the process.",
+  },
+  {
+    id: 13,
+    kurzform: "Continue allowing fossil fuel heating",
+    these: "New heating systems should continue to be allowed to run entirely on fossil fuels (e.g., gas or oil).",
+    position: "stimme_nicht_zu",
+    begruendung: "A heating system has a lifespan of 20-30 years. Anyone who installs a fossil fuel heater today will be emitting until 2055. That is incompatible with the climate targets Germany has committed to. The Building Energy Act (Gebäudeenergiegesetz) was a communications disaster — but the physical basis was correct. KIfD would have explained the law better, not rolled it back. The atmosphere has no understanding for coalition compromises.",
+  },
+];
+
+const enFull: WahlomatThese[] = [
+  ...en,
+  ...de.slice(en.length),
+];
+
+const map: Record<string, WahlomatThese[]> = { de, en: enFull };
 
 export function getWahlomatThesen(locale: Locale): WahlomatThese[] {
   return map[locale] || map.de;
