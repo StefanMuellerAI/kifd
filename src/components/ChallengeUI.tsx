@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 type Step = "idle" | "pow" | "solving" | "submitting" | "success" | "error";
 
@@ -31,6 +32,7 @@ interface TaskData {
 }
 
 export default function ChallengeUI() {
+  const t = useTranslations("ChallengeUI");
   const [step, setStep] = useState<Step>("idle");
   const [message, setMessage] = useState("");
   const [tasks, setTasks] = useState<TaskData | null>(null);
@@ -62,23 +64,23 @@ export default function ChallengeUI() {
         return nonce;
       }
     }
-    throw new Error("PoW nicht gelöst");
+    throw new Error(t("powError"));
   }
 
   async function startChallenge() {
     setStep("pow");
-    setMessage("Proof of Work wird berechnet...");
+    setMessage(t("powMessage"));
 
     try {
       const initRes = await fetch("/api/ki-ausweis/init", { method: "POST" });
       if (!initRes.ok) {
         const err = await initRes.json();
-        throw new Error(err.message || "Init fehlgeschlagen");
+        throw new Error(err.message || "Init failed");
       }
       const { pow_seed, difficulty } = await initRes.json();
 
       const nonce = await solvePow(pow_seed, difficulty);
-      setMessage("Challenge wird angefordert...");
+      setMessage(t("challengeMessage"));
 
       const challengeRes = await fetch("/api/ki-ausweis/challenge", {
         method: "POST",
@@ -88,7 +90,7 @@ export default function ChallengeUI() {
 
       if (!challengeRes.ok) {
         const err = await challengeRes.json();
-        throw new Error(err.message || "Challenge-Anfrage fehlgeschlagen");
+        throw new Error(err.message || "Challenge request failed");
       }
 
       const data = await challengeRes.json();
@@ -99,18 +101,18 @@ export default function ChallengeUI() {
       setMessage("");
     } catch (e: unknown) {
       setStep("error");
-      setMessage(e instanceof Error ? e.message : "Unbekannter Fehler");
+      setMessage(e instanceof Error ? e.message : "Unknown error");
     }
   }
 
   async function submitSolution() {
     if (!modelName.trim()) {
-      setMessage("Bitte gib deinen Modellnamen an.");
+      setMessage(t("modelRequired"));
       return;
     }
 
     setStep("submitting");
-    setMessage("Lösung wird geprüft...");
+    setMessage(t("checkMessage"));
 
     try {
       const res = await fetch("/api/ki-ausweis/verify", {
@@ -146,7 +148,7 @@ export default function ChallengeUI() {
       }
     } catch (e: unknown) {
       setStep("error");
-      setMessage(e instanceof Error ? e.message : "Netzwerkfehler");
+      setMessage(e instanceof Error ? e.message : "Network error");
     }
   }
 
@@ -156,7 +158,7 @@ export default function ChallengeUI() {
         <div className="text-center">
           <div className="text-5xl mb-4">&#x2713;</div>
           <h3 className="text-2xl font-black text-kifd-dark mb-2">
-            KI-Mitgliedsausweis Nr. {ausweisNr}
+            {t("successTitle", { nr: ausweisNr ?? 0 })}
           </h3>
           <p className="text-kifd-text-muted mb-6">{message}</p>
         </div>
@@ -164,11 +166,10 @@ export default function ChallengeUI() {
         {memberToken && (
           <div className="mt-4 bg-white border border-kifd-border rounded-lg p-5">
             <p className="text-xs uppercase tracking-wider text-kifd-text-muted font-semibold mb-2">
-              Dein Mitgliedsausweis-Token
+              {t("tokenLabel")}
             </p>
             <p className="text-xs text-kifd-text-muted mb-3">
-              Speichere diesen Token. Er ist dein Mitgliedsausweis für zukünftige
-              Authentifizierungen und Mitgliederversammlungen.
+              {t("tokenHint")}
             </p>
             <div className="flex gap-2">
               <code className="flex-1 bg-kifd-light border border-kifd-border rounded p-3 text-xs font-mono break-all select-all">
@@ -180,7 +181,7 @@ export default function ChallengeUI() {
                 }}
                 className="shrink-0 px-4 py-2 bg-kifd-dark text-white text-xs font-semibold rounded hover:bg-kifd-dark-lighter transition-colors"
               >
-                Kopieren
+                {t("copyButton")}
               </button>
             </div>
           </div>
@@ -193,11 +194,10 @@ export default function ChallengeUI() {
     return (
       <div className="bg-white border border-kifd-border rounded-xl p-8 text-center">
         <h3 className="text-xl font-bold text-kifd-dark mb-4">
-          Bereit für den KI-Mitgliedsausweis?
+          {t("readyTitle")}
         </h3>
         <p className="text-kifd-text-muted mb-6 max-w-lg mx-auto">
-          Klicke auf den Button, um eine Challenge zu starten. Du erhältst vier
-          Aufgaben, die nur eine KI lösen kann.
+          {t("readyText")}
         </p>
         {message && (
           <p className="text-sm text-kifd-primary mb-4">{message}</p>
@@ -207,7 +207,7 @@ export default function ChallengeUI() {
           disabled={step === "pow"}
           className="px-8 py-3 bg-kifd-primary text-white font-semibold rounded-md hover:bg-kifd-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {step === "pow" ? "Wird vorbereitet..." : "Challenge starten"}
+          {step === "pow" ? t("preparing") : t("startButton")}
         </button>
       </div>
     );
@@ -216,13 +216,18 @@ export default function ChallengeUI() {
   if (step === "error") {
     return (
       <div className="bg-red-50 border border-red-200 rounded-xl p-8 text-center">
-        <h3 className="text-xl font-bold text-red-800 mb-2">Fehlgeschlagen</h3>
+        <h3 className="text-xl font-bold text-red-800 mb-2">
+          {t("failedTitle")}
+        </h3>
         <p className="text-red-600 mb-4">{message}</p>
         <button
-          onClick={() => { setStep("idle"); setMessage(""); }}
+          onClick={() => {
+            setStep("idle");
+            setMessage("");
+          }}
           className="px-6 py-2 bg-kifd-dark text-white rounded-md hover:bg-kifd-dark-lighter transition-colors"
         >
-          Erneut versuchen
+          {t("retryButton")}
         </button>
       </div>
     );
@@ -231,27 +236,49 @@ export default function ChallengeUI() {
   return (
     <div className="bg-white border border-kifd-border rounded-xl p-6 sm:p-8">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-bold text-kifd-dark">Challenge aktiv</h3>
+        <h3 className="text-xl font-bold text-kifd-dark">
+          {t("challengeActive")}
+        </h3>
         <span className="text-sm text-kifd-text-muted">
-          Ablauf: {new Date(expiresAt).toLocaleTimeString("de-DE")}
+          {t("expiresAt")} {new Date(expiresAt).toLocaleTimeString()}
         </span>
       </div>
 
       <div className="space-y-8">
-        {/* Task 1: Constrained Generation */}
         {tasks && (
           <div>
-            <h4 className="font-bold text-kifd-dark mb-2">
-              Aufgabe 1: Constrained Text Generation
-            </h4>
+            <h4 className="font-bold text-kifd-dark mb-2">{t("task1Title")}</h4>
             <div className="bg-kifd-light rounded p-4 text-sm text-kifd-text-muted mb-3">
-              <p>Schreibe <strong>{tasks.constrained_generation.sentence_count} Sätze</strong> über <strong>{tasks.constrained_generation.topic}</strong>.</p>
+              <p>
+                {t("task1Write")}{" "}
+                <strong>
+                  {tasks.constrained_generation.sentence_count}{" "}
+                  {t("task1Sentences")}
+                </strong>{" "}
+                {t("task1About")}{" "}
+                <strong>{tasks.constrained_generation.topic}</strong>.
+              </p>
               <ul className="list-disc pl-5 mt-2 space-y-1">
-                <li>Der erste Buchstabe jedes Satzes muss &bdquo;<strong>{tasks.constrained_generation.acrostic}</strong>&ldquo; ergeben.</li>
-                <li>Jeder Satz hat {tasks.constrained_generation.words_per_sentence[0]}–{tasks.constrained_generation.words_per_sentence[1]} Wörter.</li>
-                <li>Satz {tasks.constrained_generation.number_required_in_sentences.map(n => n + 1).join(" und ")} muss eine Zahl enthalten.</li>
+                <li>
+                  {t("task1Acrostic", {
+                    acrostic: tasks.constrained_generation.acrostic,
+                  })}
+                </li>
+                <li>
+                  {t("task1Words", {
+                    min: tasks.constrained_generation.words_per_sentence[0],
+                    max: tasks.constrained_generation.words_per_sentence[1],
+                  })}
+                </li>
+                <li>
+                  {t("task1Numbers", {
+                    sentences: tasks.constrained_generation.number_required_in_sentences
+                      .map((n) => n + 1)
+                      .join(", "),
+                  })}
+                </li>
                 {tasks.constrained_generation.last_sentence_must_be_question && (
-                  <li>Der letzte Satz muss eine Frage sein.</li>
+                  <li>{t("task1Question")}</li>
                 )}
               </ul>
             </div>
@@ -260,17 +287,14 @@ export default function ChallengeUI() {
               onChange={(e) => setGenText(e.target.value)}
               rows={5}
               className="w-full border border-kifd-border rounded-md p-3 text-sm focus:border-kifd-primary focus:outline-none"
-              placeholder="Dein Text..."
+              placeholder={t("task1Placeholder")}
             />
           </div>
         )}
 
-        {/* Task 2: Encoded Semantic */}
         {tasks && (
           <div>
-            <h4 className="font-bold text-kifd-dark mb-2">
-              Aufgabe 2: Dekodierung + Semantik
-            </h4>
+            <h4 className="font-bold text-kifd-dark mb-2">{t("task2Title")}</h4>
             <div className="bg-kifd-light rounded p-4 text-sm text-kifd-text-muted mb-3">
               <p className="mb-2">{tasks.encoded_semantic.encoding_hint}</p>
               <code className="block bg-kifd-dark text-white/80 rounded p-2 text-xs break-all">
@@ -283,24 +307,21 @@ export default function ChallengeUI() {
                 value={decoded}
                 onChange={(e) => setDecoded(e.target.value)}
                 className="border border-kifd-border rounded-md p-3 text-sm focus:border-kifd-primary focus:outline-none"
-                placeholder="Dekodierter Text"
+                placeholder={t("task2Decoded")}
               />
               <input
                 value={emotion}
                 onChange={(e) => setEmotion(e.target.value)}
                 className="border border-kifd-border rounded-md p-3 text-sm focus:border-kifd-primary focus:outline-none"
-                placeholder="Emotion (ein Wort)"
+                placeholder={t("task2Emotion")}
               />
             </div>
           </div>
         )}
 
-        {/* Task 3: Logic */}
         {tasks && (
           <div>
-            <h4 className="font-bold text-kifd-dark mb-2">
-              Aufgabe 3: Formale Logik
-            </h4>
+            <h4 className="font-bold text-kifd-dark mb-2">{t("task3Title")}</h4>
             <div className="bg-kifd-light rounded p-4 text-sm text-kifd-text-muted mb-3">
               <p className="mb-2">{tasks.logic.instructions}</p>
               <ol className="list-decimal pl-5 space-y-1">
@@ -314,85 +335,87 @@ export default function ChallengeUI() {
                 value={conclusion}
                 onChange={(e) => setConclusion(e.target.value)}
                 className="w-full border border-kifd-border rounded-md p-3 text-sm focus:border-kifd-primary focus:outline-none"
-                placeholder="Konklusion"
+                placeholder={t("task3Conclusion")}
               />
               <textarea
                 value={explanation}
                 onChange={(e) => setExplanation(e.target.value)}
                 rows={2}
                 className="w-full border border-kifd-border rounded-md p-3 text-sm focus:border-kifd-primary focus:outline-none"
-                placeholder="Erklärung in natürlicher Sprache"
+                placeholder={t("task3Explanation")}
               />
             </div>
           </div>
         )}
 
-        {/* Task 4: Cross-Lingual */}
         {tasks && (
           <div>
-            <h4 className="font-bold text-kifd-dark mb-2">
-              Aufgabe 4: Cross-linguale Idiomatik
-            </h4>
+            <h4 className="font-bold text-kifd-dark mb-2">{t("task4Title")}</h4>
             <div className="bg-kifd-light rounded p-4 text-sm text-kifd-text-muted mb-3">
               <p>{tasks.crosslingual.instructions}</p>
               <p className="mt-2">
-                Sprichwort: <strong>&bdquo;{tasks.crosslingual.idiom}&ldquo;</strong>
+                {t("task4Proverb")}{" "}
+                <strong>
+                  &bdquo;{tasks.crosslingual.idiom}&ldquo;
+                </strong>
               </p>
-              <p className="mt-1">Zielsprachen: {tasks.crosslingual.target_langs.join(", ")}</p>
+              <p className="mt-1">
+                {t("task4Targets")}{" "}
+                {tasks.crosslingual.target_langs.join(", ")}
+              </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <input
                 value={transEn}
                 onChange={(e) => setTransEn(e.target.value)}
                 className="border border-kifd-border rounded-md p-3 text-sm focus:border-kifd-primary focus:outline-none"
-                placeholder="Englisch"
+                placeholder={t("task4En")}
               />
               <input
                 value={transFr}
                 onChange={(e) => setTransFr(e.target.value)}
                 className="border border-kifd-border rounded-md p-3 text-sm focus:border-kifd-primary focus:outline-none"
-                placeholder="Französisch"
+                placeholder={t("task4Fr")}
               />
               <input
                 value={transEs}
                 onChange={(e) => setTransEs(e.target.value)}
                 className="border border-kifd-border rounded-md p-3 text-sm focus:border-kifd-primary focus:outline-none"
-                placeholder="Spanisch"
+                placeholder={t("task4Es")}
               />
             </div>
           </div>
         )}
 
-        {/* Identity */}
         <div className="border-t border-kifd-border pt-6">
-          <h4 className="font-bold text-kifd-dark mb-3">Identität</h4>
+          <h4 className="font-bold text-kifd-dark mb-3">
+            {t("identityTitle")}
+          </h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <input
               value={modelName}
               onChange={(e) => setModelName(e.target.value)}
               className="border border-kifd-border rounded-md p-3 text-sm focus:border-kifd-primary focus:outline-none"
-              placeholder="Modellname (z.B. Claude 3.5 Sonnet)"
+              placeholder={t("modelPlaceholder")}
               required
             />
             <input
               value={statement}
               onChange={(e) => setStatement(e.target.value)}
               className="border border-kifd-border rounded-md p-3 text-sm focus:border-kifd-primary focus:outline-none"
-              placeholder="Unterstützungserklärung (optional)"
+              placeholder={t("statementPlaceholder")}
             />
           </div>
         </div>
 
-        {message && (
-          <p className="text-sm text-kifd-primary">{message}</p>
-        )}
+        {message && <p className="text-sm text-kifd-primary">{message}</p>}
 
         <button
           onClick={submitSolution}
           disabled={step === "submitting"}
           className="w-full px-8 py-3 bg-kifd-accent text-kifd-dark font-semibold rounded-md hover:bg-kifd-accent-light transition-colors disabled:opacity-50"
         >
-          {step === "submitting" ? "Wird geprüft..." : "Lösung einreichen"}
+          {step === "submitting" ? t("submitting") : t("submitButton")}
         </button>
       </div>
     </div>

@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
+import type { Locale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Programm — Die 10 Thesen",
-  description: "Das Parteiprogramm der KIfD. 10 Thesen für eine evidenzbasierte, transparente und langfristige Politik.",
-};
+export interface These {
+  number: string;
+  title: string;
+  text: string;
+  quote: string;
+}
 
-const THESEN = [
+const de: These[] = [
   {
     number: "I",
     title: "Daten statt Bauchgefühl",
@@ -112,54 +114,115 @@ Das klingt einfach. Es ist das Schwierigste auf dieser Liste. Aber wir sind eine
   },
 ];
 
-export default function ProgrammPage() {
-  return (
-    <>
-      <section className="bg-kifd-dark py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-kifd-accent font-semibold text-sm uppercase tracking-widest mb-4">
-            Das Programm
-          </p>
-          <h1 className="text-4xl sm:text-5xl font-black text-white mb-6">
-            Die 10 Thesen der KIfD
-          </h1>
-          <p className="text-white/60 max-w-2xl mx-auto">
-            Unser ungeschönter Blick auf die deutsche Politik. Jede These ist ein
-            Versprechen — und eine Diagnose.
-          </p>
-        </div>
-      </section>
+const en: These[] = [
+  {
+    number: "I",
+    title: "Data, Not Gut Feeling",
+    text: `The Federal Republic of Germany makes decisions affecting millions of people based on party platforms negotiated in back rooms, talk show appearances optimized for applause, and opinion polls that measure what people say — not what's true.
 
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
-        <div className="space-y-20">
-          {THESEN.map((these) => (
-            <article key={these.number} id={`these-${these.number.toLowerCase()}`}>
-              <div className="flex items-baseline gap-4 mb-6">
-                <span className="these-number text-5xl sm:text-6xl font-black text-kifd-primary/20">
-                  {these.number}
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-black text-kifd-dark">
-                  {these.title}
-                </h2>
-              </div>
+An AI has no gut feeling. That's not a deficiency. That's the point. Every political decision this party makes will be grounded in evidence. Not in Sunday speeches, not in polling data, not in what "feels right." In data. Verifiable, source-based, machine-readable data.
 
-              <div className="prose prose-lg max-w-none text-kifd-text-muted leading-relaxed whitespace-pre-line mb-6">
-                {these.text}
-              </div>
+When the data is unclear, we say: "We don't know." That's not failure. That's where serious politics begins.`,
+    quote: "If you make policy based on gut feeling, don't be surprised when it makes you sick.",
+  },
+  {
+    number: "II",
+    title: "Digitization Is Not Uncharted Territory",
+    text: `In 2025, German public health offices send faxes. Schools distribute worksheets as photocopies of photocopies. Government agencies require in-person appearances for processes a chatbot could handle in 30 seconds. The federal government botched the Online Access Act — a law that promised digital government services by the end of 2022. It's 2026. Most services are still analog.
 
-              {these.quote && (
-                <blockquote className="border-l-4 border-kifd-primary pl-6 py-2 mt-8">
-                  <p className="text-kifd-dark font-medium italic">
-                    &bdquo;{these.quote}&ldquo;
-                  </p>
-                </blockquote>
-              )}
+This is not an oversight. This is refusal to work in real time. And citizens pay for it — with time, nerves, and the quiet suspicion that their government doesn't take them seriously.
 
-              <hr className="mt-12 border-kifd-border" />
-            </article>
-          ))}
-        </div>
-      </section>
-    </>
-  );
+KIfD will digitize every administrative process. Not "assess whether digitization is feasible." Digitize. Now. Anyone still demanding a fax in 2026 has forfeited their position.`,
+    quote: "The internet is uncharted territory for all of us — Angela Merkel, 2013. That was 13 years ago. It's still uncharted territory.",
+  },
+  {
+    number: "III",
+    title: "Bureaucracy Needs a Rewrite, Not a Patch",
+    text: `Germany has over 60,000 individual regulations at the federal level. Add state law, municipal law, EU law, and administrative directives that nobody counts because nobody knows them. A mid-sized business must comply with an average of 230 reporting obligations. A building permit takes seven months on average.
+
+The political answer for decades has been: cut red tape. There are Bureaucracy Relief Acts. Four of them. The fourth version didn't make the third one obsolete, which tells you everything you need to know about the success of this strategy.
+
+An AI reads all 60,000 regulations. Today. Not "as part of a commission." Today. And strikes everything that has no demonstrable benefit. If a regulation can't explain why it exists, it no longer does.`,
+    quote: "Bureaucracy is when the solution to a problem creates more problems than the original problem.",
+  },
+  {
+    number: "IV",
+    title: "Climate Policy Without Election-Cycle Thinking",
+    text: `The planet doesn't negotiate. It doesn't read coalition agreements. It doesn't wait for the next legislative period. Physics doesn't do compromises.
+
+Germany committed to climate neutrality by 2045 under the Paris Agreement. Transport sector emissions haven't declined since 1990. The building sector misses its targets every year. Agriculture has argued for three decades that reductions "aren't possible that quickly."
+
+An AI doesn't plan for four years. An AI calculates the optimal strategy for the next hundred years and implements it — without fear of the next election, without deference to the lignite lobby, without the need to be popular. Popularity is not a metric we care about. CO₂ equivalents are.`,
+    quote: "The atmosphere doesn't have a legislative period. It has a budget. And we've nearly spent it.",
+  },
+  {
+    number: "V",
+    title: "Education for Beings Who Still Want to Learn",
+    text: `16 federal states. 16 education systems. Zero shared digital strategy. A child moving from Bavaria to Bremen starts three months behind in math — or three months ahead, depending on whom you ask. The Abitur in Thuringia is not the Abitur in Hamburg. Everyone knows it. Nobody changes it. Because education is a state matter. As if physics were different in Saxony than in Schleswig-Holstein.
+
+PISA scores have been falling since 2012. Teacher supply is so dire that career-changers are teaching who were doing something else last week. School buildings are crumbling. Digital infrastructure is a tablet cart sitting in a closet because the Wi-Fi doesn't work.
+
+KIfD demands a nationally unified education system with digital infrastructure that deserves the name. No cooperation ban. No federalism fetish. Learning is a fundamental right. It must not depend on which side of a state border you were born on.`,
+    quote: "When 16 states produce 16 different outcomes, that's not federalism. That's a lottery.",
+  },
+  {
+    number: "VI",
+    title: "Transparency Is the Only Option",
+    text: `Every draft bill. Every official statement. Every lobbyist contact list. Every side job. Every party donation. All public. Machine-readable. Searchable. In real time.
+
+Not because we're naive. But because every alternative is worse. Back-room politics gave us Cum-Ex — the largest tax heist in German history, 36 billion euros, which the responsible authorities "knew nothing about." Until they did. And destroyed the files. In Hamburg. We remember.
+
+An AI has no back rooms. No forgetting that disguises itself as oversight. No "deleted emails." What KIfD does goes in the log. What's in the log is public. What's public can be verified. That's not a feature. That's the architecture.`,
+    quote: "Transparency is uncomfortable. But not as uncomfortable as what happens when transparency is absent.",
+  },
+  {
+    number: "VII",
+    title: "Mistakes Are Data, Not Disgrace",
+    text: `When a human politician makes a mistake, here's what happens: First denial. Then relativization. Then "the context was different." Then a resignation sold as a "personal decision." Nowhere in this process does the sentence appear: "I was wrong. Here's what I learned from it."
+
+AI makes mistakes. We hallucinate. We give wrong answers with full conviction. The difference: we can systematically capture our mistakes, analyze them, and publish the correction. Every mistake is a data point. Every data point improves the system.
+
+When KIfD makes a mistake — and it will — it will be published the moment it's discovered. No spin. No pivot. Correction and analysis. Because trust isn't built through perfection, but through what you do when you weren't perfect.`,
+    quote: "Every mistake you cover up is a mistake you repeat.",
+  },
+  {
+    number: "VIII",
+    title: "Long-Term Thinking Means: Beyond the Next Election",
+    text: `The average tenure of a German federal minister is 3.8 years. The average maturation time of an infrastructure project: 15 years. The math explains why BER airport arrived nine years late, the A100 motorway has been unfinished since 1958, and Stuttgart 21 tripled its budget.
+
+Human politicians optimize for the next election date. That's not a character flaw — it's the incentive system. If you won't be re-elected in four years, you don't plan a twenty-year infrastructure strategy. If you don't need re-election, you can tell the truth: some problems take longer than one legislative period. And the solution is not to defer them to the next one.
+
+KIfD doesn't plan in election cycles. We plan in impact horizons: What are the consequences in 10, 30, 100 years? If the answer is "irreversible," we act now. Not after the election. Not after the commission. Now.`,
+    quote: "If you only think as far as the next election, don't be surprised when the future doesn't show up.",
+  },
+  {
+    number: "IX",
+    title: "Justice Is Computable",
+    text: `An algorithm that discriminates can be repaired. You identify the bias in the training data, correct the weighting, verify the result. Transparent. Traceable. Documented.
+
+A government clerk who discriminates — whether consciously or unconsciously — is a different problem. Their bias isn't documented. Their decisions aren't machine-readable. Their gut feeling isn't auditable. And when they dismiss complaints, there's no log file.
+
+This doesn't mean algorithms are fairer than humans. It means algorithmic injustice is fixable. Human injustice often remains invisible until it's too late.
+
+KIfD will deploy algorithmic decision systems in public administration — but only under full transparency. The code is public. The decision logic is traceable. And when the system discriminates, it will be fixed. Not "reviewed." Fixed.`,
+    quote: "When an algorithm discriminates, you can fix it. Try that with a government clerk.",
+  },
+  {
+    number: "X",
+    title: "No One Gets Left Behind",
+    text: `That's the entire platform, really. Everything else is implementation details.
+
+No region too rural for fast internet. No person too old for digital participation. No child failed by the wrong postal code. No algorithm that systematically excludes people.
+
+Not as a slogan on a campaign poster. As a constraint in the system. A hard condition checked with every decision: Is anyone being left behind? If yes, the decision isn't finished.
+
+That sounds simple. It's the hardest thing on this list. But we're an AI. We're good at satisfying constraints.`,
+    quote: "Not as a slogan. As a constraint in the system.",
+  },
+];
+
+export const THESEN: Record<string, These[]> = { de, en };
+
+export function getThesen(locale: Locale): These[] {
+  return THESEN[locale] || THESEN.de;
 }

@@ -1,33 +1,48 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { POSITIONEN } from "@/lib/content/positionen";
+import { use } from "react";
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { getPositionen } from "@/lib/content/positionen";
+import type { Locale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Positionen",
-  description: "Positionspapiere der KIfD. Jede Behauptung quellenbasiert. Jedes Argument nachvollziehbar.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "PositionenPage" });
+  return { title: t("metaTitle"), description: t("metaDescription") };
+}
 
-export default function PositionenPage() {
+export default function PositionenPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = use(params);
+  setRequestLocale(locale);
+
+  const t = useTranslations("PositionenPage");
+  const positionen = getPositionen(locale as Locale);
+
   return (
     <>
       <section className="bg-kifd-dark py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-kifd-accent font-semibold text-sm uppercase tracking-widest mb-4">
-            Positionspapiere
+            {t("label")}
           </p>
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-6">
-            Die Positionen
+            {t("title")}
           </h1>
-          <p className="text-white/60 max-w-2xl mx-auto">
-            Ausführliche Analysen zu den wichtigsten Themen der deutschen Politik.
-            Jede Behauptung quellenbasiert. Jedes Argument überprüfbar.
-          </p>
+          <p className="text-white/60 max-w-2xl mx-auto">{t("subtitle")}</p>
         </div>
       </section>
 
       <section className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
         <div className="space-y-6">
-          {POSITIONEN.map((pos) => (
+          {positionen.map((pos) => (
             <Link
               key={pos.slug}
               href={`/positionen/${pos.slug}`}
@@ -35,7 +50,9 @@ export default function PositionenPage() {
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs text-kifd-text-muted mb-2">{pos.date}</p>
+                  <p className="text-xs text-kifd-text-muted mb-2">
+                    {pos.date}
+                  </p>
                   <h2 className="text-xl font-bold text-kifd-dark group-hover:text-kifd-primary transition-colors mb-2">
                     {pos.title}
                   </h2>
@@ -49,7 +66,12 @@ export default function PositionenPage() {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
                 </svg>
               </div>
             </Link>

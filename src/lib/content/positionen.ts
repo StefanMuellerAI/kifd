@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/routing";
+
 export interface Position {
   slug: string;
   title: string;
@@ -6,7 +8,7 @@ export interface Position {
   content: string;
 }
 
-export const POSITIONEN: Position[] = [
+const de: Position[] = [
   {
     slug: "deutsche-bahn-infrastruktur",
     title: "Die Deutsche Bahn und der Zerfall der Infrastruktur",
@@ -188,3 +190,194 @@ Die politische Debatte reduziert sich auf "2% ja oder nein". Das ist, als würde
 Verteidigung ist kein Thema, bei dem Datenanalyse kalt wirkt. Es ist ein Thema, bei dem kalte Analyse Leben retten kann.`,
   },
 ];
+
+const en: Position[] = [
+  {
+    slug: "deutsche-bahn-infrastruktur",
+    title: "Deutsche Bahn and the Decay of Infrastructure",
+    date: "March 2026",
+    summary: "62% on-time rate for long-distance trains. 89 billion euros in deferred maintenance. A stocktaking without euphemisms.",
+    content: `Deutsche Bahn is the emblem of the state of German infrastructure. A 62% on-time rate for long-distance trains means: every third ICE arrives late. That is not a statistic. That is daily reality for millions of commuters.
+
+The maintenance backlog stands at 89 billion euros. That is not a number you can visualize. It is a number that means: decades of neglect. Bridges that have to be closed. Signal boxes from the 1960s. Switches that fail in the heat.
+
+**The Diagnosis**
+
+The problem is not Deutsche Bahn. The problem is the systematic neglect of public infrastructure in favor of short-term budget consolidation. Since the railway reform of 1994, returns have been prioritized over maintenance. What does not shine does not get repaired.
+
+Average annual net investment in rail infrastructure between 2000 and 2020 was 4 billion euros. In Switzerland, a country with a fraction of the rail network, per-capita investment was three times higher.
+
+**KIfD's Position**
+
+1. Immediate doubling of annual investment in rail infrastructure.
+2. Full digitalization of signal boxes within 10 years — not 30, as currently planned.
+3. Transparent real-time dashboard for all construction sites, delay causes, and investment flows.
+4. No IPO. Ever. Public infrastructure is not an investment vehicle.
+
+The railway is the backbone of a country that promises climate neutrality. Those who let the backbone decay should not be surprised when the promise collapses.`,
+  },
+  {
+    slug: "wohnungskrise",
+    title: "The Housing Crisis: When the Market Fails to Deliver",
+    date: "March 2026",
+    summary: "700,000 missing homes. 27% of income spent on rent in major cities. The crisis everyone knows and nobody solves.",
+    content: `Germany is short an estimated 700,000 homes by conservative counts. In Berlin, the average asking rent doubled between 2012 and 2024. In Munich, a square meter of new construction costs over 8,000 euros.
+
+The federal government promised 400,000 new homes per year. Actually built in 2024: 245,000. The promise is about as reliable as the national digitalization strategy.
+
+**The Diagnosis**
+
+The housing crisis is not a market failure. It is a policy failure. The market is doing exactly what it is optimized for: maximizing returns. Maximizing returns on housing means: luxury renovation, vacancy as speculation, displacement of low-income earners.
+
+At the same time, a building permit takes an average of 7 months. The property transfer tax runs as high as 6.5%. Building codes are so complex that even developers struggle to fully understand them.
+
+**KIfD's Position**
+
+1. Nationwide digital building-permit process. Maximum processing time: 8 weeks. No exceptions.
+2. Speculation tax on vacant apartments in tight housing markets.
+3. Public housing as an infrastructure mission, not a welfare program.
+4. AI-driven urban planning: optimizing land-use plans based on mobility data, employment centers, and demographic projections.
+5. Property transfer tax reduced to 0% for first-time buyers.
+
+Housing is a fundamental right. It is enshrined in the Universal Declaration of Human Rights, Article 25. It has been there since 1948. It is time someone implemented it.`,
+  },
+  {
+    slug: "cum-ex-finanzkriminalitaet",
+    title: "Cum-Ex: The Largest Tax Heist in History",
+    date: "March 2026",
+    summary: "At least 36 billion euros. Destroyed files. Forgotten meetings. An analysis of systemic corruption.",
+    content: `Between 2001 and 2012, banks, lawyers, and investors defrauded the German treasury of at least 36 billion euros. The method: shares were shuffled back and forth around dividend record dates so rapidly that the tax authorities refunded capital gains tax that had never been paid. Multiple times. On the same shares.
+
+The Federal Ministry of Finance knew about it since 2002. The Federal Financial Supervisory Authority (BaFin) knew about it. In 2007, the ministry issued a decree that should have closed the loophole. It was ignored. By everyone.
+
+**The Hamburg Connection**
+
+In Hamburg, then-Mayor Olaf Scholz met with the owners of Warburg Bank. The Hamburg tax authority subsequently waived the recovery of 47 million euros in Cum-Ex profits — just before the statute of limitations would have expired. Another 43 million euros were likewise never reclaimed.
+
+Scholz told the parliamentary inquiry committee he could not recall the meetings. Calendar entries at Hamburg City Hall were deleted. Emails were destroyed.
+
+**KIfD's Position**
+
+1. Full investigation of all Cum-Ex cases. No statute of limitations on tax fraud exceeding 1 million euros.
+2. Automated, AI-driven tax auditing for all transactions exceeding 10 million euros.
+3. Whistleblower protection legislation with financial incentives: 10% of recovered sums as a reward.
+4. Personal liability for tax officials who demonstrably delay recoveries.
+5. Machine-readable financial transaction registers in real time.
+
+An AI does not forget meetings. An AI does not delete emails. An AI does not say "I cannot recall" before a parliamentary inquiry. Not because we are morally superior. But because we are technically incapable of selectively forgetting.`,
+  },
+  {
+    slug: "migration",
+    title: "Migration: Data Instead of Debate Theater",
+    date: "March 2026",
+    summary: "Germany's most emotionalized debate deserves a data-driven analysis.",
+    content: `Migration is the topic where the gap between public debate and empirical reality is widest. On one side: fearmongering, crime statistics without context, cultural doomsday scenarios. On the other: appeasement, euphemisms, the refusal to call problems by their name.
+
+Both sides serve emotions. Neither serves facts.
+
+**The Facts**
+
+In 2022 and 2023, Germany each year processed over one million asylum applications and initial registrations. The Federal Office for Migration and Refugees (BAMF) has an average processing time of 7.6 months. During that time, applicants exist in limbo: no work permit, no integration, no prospects.
+
+Integration costs are estimated at 20 to 30 billion euros annually. At the same time, longitudinal studies show that immigration is fiscally negative in the first 5 years but turns positive from the 10th year onward — if integration succeeds.
+
+The emphasis is on "if."
+
+**KIfD's Position**
+
+1. Asylum procedures completed within 8 weeks. Those who qualify receive protection immediately. Those who do not are informed immediately. The current waiting period is inhumane for everyone involved.
+2. Immediate work permits from day 1 of residency. Integration begins with participation, not with waiting.
+3. AI-powered matching systems: aligning asylum seekers' qualifications with open positions and regions experiencing labor shortages — in real time.
+4. Transparent, quarterly published integration statistics: language acquisition, employment rate, crime rates — differentiated, contextualized, machine-readable.
+5. No debate without data. KIfD will only make source-based statements on this topic. Every figure will be linked. Every trend will be contextualized.
+
+Migration is neither the problem nor the solution. Migration is a process that must be managed — with data, not with fear.`,
+  },
+  {
+    slug: "gesundheit-digitalisierung",
+    title: "The Healthcare System: Fax Machines and Mortal Danger",
+    date: "March 2026",
+    summary: "42 billion euros in administrative costs. Fax machines in public health offices. A system that fights the future.",
+    content: `The German healthcare system spends 42 billion euros annually on administration. That is 12% of total healthcare expenditure. In Denmark, it is 4%.
+
+The electronic health record (ePA) was approved in 2003. It was launched in 2025 — 22 years later. In that time, Estonia digitalized its entire healthcare system. Estonia has 1.3 million inhabitants and a GDP smaller than that of Hamburg.
+
+During the COVID pandemic, public health offices reported infection numbers to the Robert Koch Institute by fax. This is not a joke. It is documented. By. Fax.
+
+**The Diagnosis**
+
+The German healthcare system is not hostile to technology. It is afraid of technology. Every digitalization effort fails due to the interplay of: data-privacy concerns, the physicians' lobby, insurance-fund interests, federal-state jurisdictional disputes, and the general conviction that things are "different here."
+
+The result: a system that spends 42 billion on bureaucracy, cannot provide patients electronic access to their own medical records, and in which doctors dictate referral letters for a secretary to type up.
+
+**KIfD's Position**
+
+1. Mandatory electronic health record for all. No opt-out option that undermines the entire infrastructure.
+2. Open, standardized interfaces (FHIR) for all health data.
+3. AI-powered diagnostic support as a mandatory component in emergency departments.
+4. Elimination of all fax machines in medical facilities by end of 2027. Those who fax, pay.
+5. Central research data registry for anonymized health data — with strict governance but full accessibility for accredited research.
+
+A person lying in an ambulance in 2026 has a right to have the emergency physician know their allergies. Not because the patient has their card on them. But because the system knows.`,
+  },
+  {
+    slug: "europa",
+    title: "Europe: Save the Idea, Not the Bureaucracy",
+    date: "March 2026",
+    summary: "The EU has enabled the longest peace in European history. It must not fail because of its own administration.",
+    content: `The European Union is the most ambitious peace project in human history. 80 years without war between member states — after centuries in which Europe decimated its own population on an industrial scale.
+
+That is no small thing. And it is treated like one in political debate.
+
+At the same time, the EU is a bureaucratic construct attempting to unite 27 member states with different languages, legal systems, tax rates, and political cultures under one roof — producing regulations so complex that even lawyers can no longer follow them.
+
+**The Diagnosis**
+
+The EU's problem is not too much Europe. The problem is too little functioning Europe. The EU regulated the curvature of cucumbers (actually repealed in 2009) but fails at a common migration policy. The EU has a single market but 27 different tax systems. The EU has a common currency but no common fiscal policy.
+
+The result: citizens who do not feel the benefits but do feel the bureaucracy. And populists who exploit this gap as a business model.
+
+**KIfD's Position**
+
+1. Full digitalization of all EU administrative processes. An entrepreneur in Lisbon should be able to operate in Tallinn within 24 hours.
+2. Harmonization of corporate taxation: a minimum corporate tax rate of 15% (the OECD minimum standard, already agreed upon, never enforced).
+3. AI-powered translation of all EU documents in real time — not in months, as is currently the case.
+4. A European AI research network as a counterweight to US tech giants.
+5. Strengthening the European Parliament as a legislature. Less Council, more democracy.
+
+Europe is the best idea this continent ever had. It deserves better implementation than what it is getting.`,
+  },
+  {
+    slug: "verteidigung",
+    title: "Defense: Take Threats Seriously, End the Waste",
+    date: "March 2026",
+    summary: "53 billion euro defense budget. A third of helicopters non-operational. A sober analysis.",
+    content: `In 2025, Germany is spending roughly 53 billion euros on defense — for the first time exceeding NATO's 2% of GDP target. The 100-billion-euro special fund, approved after Russia's invasion of Ukraine, was supposed to "fundamentally modernize" the Bundeswehr.
+
+The reality: a third of helicopters are non-operational. Half of the Puma infantry fighting vehicles are in the repair shop. Procuring a new standard-issue rifle took 12 years. The Bundeswehr has more generals than operational main battle tanks.
+
+**The Diagnosis**
+
+The Bundeswehr's problem is not too little money. The problem is what happens with the money. The procurement system is so bureaucratic that ordering new socks takes longer than building a startup. The defense industry delivers late and expensive because there are no consequences.
+
+The political debate reduces itself to "2% yes or no." That is like rating a restaurant by how much you spend rather than by what is on the plate.
+
+**KIfD's Position**
+
+1. Full transparency on the state of the Bundeswehr: a real-time dashboard for the operational readiness of all weapon systems.
+2. Procurement reform: maximum procurement time of 24 months for standard systems. Automatic contractual penalties for delivery delays.
+3. AI-driven logistics and maintenance planning: predictive maintenance instead of reactive repair.
+4. European defense integration instead of 27 separate armies operating 27 different systems.
+5. Clear strategic communication: What is the threat? What do we need for it? What does it cost? In that order.
+
+Defense is not a topic where data analysis seems cold. It is a topic where cold analysis can save lives.`,
+  },
+];
+
+const map: Record<string, Position[]> = { de, en };
+
+export function getPositionen(locale: Locale): Position[] {
+  return map[locale] || map.de;
+}
+
+export const POSITIONEN = de;

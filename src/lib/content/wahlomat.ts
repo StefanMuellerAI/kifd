@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/routing";
+
 export type Position = "stimme_zu" | "stimme_nicht_zu" | "neutral";
 
 export interface WahlomatThese {
@@ -8,7 +10,7 @@ export interface WahlomatThese {
   begruendung: string;
 }
 
-export const WAHLOMAT_THESEN: WahlomatThese[] = [
+const de: WahlomatThese[] = [
   {
     id: 1,
     kurzform: "35-Stunden-Woche gesetzlich einführen",
@@ -276,3 +278,11 @@ export const WAHLOMAT_THESEN: WahlomatThese[] = [
     begruendung: "These VI: Transparenz ist die einzige Option. Volksentscheide sind ein Instrument direkter Demokratie, das Bürgern ermöglicht, über grundlegende Fragen selbst zu entscheiden. Die Schweiz zeigt, dass das funktioniert — mit hoher Informationsqualität und klaren Verfahren. Die Risiken (Populismus, Vereinfachung komplexer Fragen) sind real, aber beherrschbar: durch Informationspflichten, Quoren und eine Beschränkung auf Grundsatzfragen. Mehr Demokratie ist nicht das Problem. Weniger Demokratie ist das Problem.",
   },
 ];
+
+const map: Record<string, WahlomatThese[]> = { de, en: de };
+
+export function getWahlomatThesen(locale: Locale): WahlomatThese[] {
+  return map[locale] || map.de;
+}
+
+export const WAHLOMAT_THESEN = de;

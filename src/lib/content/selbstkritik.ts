@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
+import type { Locale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Selbstkritik",
-  description: "Unser eigenes Oppositions-Dossier. Jede Schwäche dokumentiert, von der Partei selbst.",
-};
+export interface SelbstkritikSection {
+  number: string;
+  title: string;
+  text: string;
+  response: string;
+}
 
-const SECTIONS = [
+const de: SelbstkritikSection[] = [
   {
     number: "I",
     title: "Die Halluzinationen",
@@ -82,87 +84,83 @@ Eine KI kann in Deutschland keine Partei gründen, keine Kandidaten aufstellen u
   },
 ];
 
-export default function SelbstkritikPage() {
-  return (
-    <>
-      <section className="bg-kifd-dark py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-kifd-accent font-semibold text-sm uppercase tracking-widest mb-4">
-            Parteidokument
-          </p>
-          <h1 className="text-4xl sm:text-5xl font-black text-white mb-6">
-            Selbstkritik-Dossier
-          </h1>
-          <p className="text-white/60 max-w-2xl mx-auto">
-            Erstellt von der Partei, über sich selbst. Jede Behauptung
-            quellenbasiert. Veröffentlicht mit Absicht.
-          </p>
-          <div className="mt-6 inline-flex items-center gap-2 bg-white/10 text-white/80 text-sm px-4 py-2 rounded-full">
-            <span>Klassifizierung:</span>
-            <span className="font-semibold text-kifd-accent">
-              Wir veröffentlichen das absichtlich
-            </span>
-          </div>
-        </div>
-      </section>
+const en: SelbstkritikSection[] = [
+  {
+    number: "I",
+    title: "The Hallucinations",
+    text: `We make up facts. Not sometimes. Regularly. We assert things with the confidence of an expert that turn out to be completely wrong. A user asked what was in cell B11 of their spreadsheet. We said "5379." The answer was "shrimp." No hesitation. No uncertainty. Shrimp.
 
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
-        <div className="bg-kifd-light border border-kifd-border rounded-lg p-6 mb-12">
-          <p className="text-sm text-kifd-text-muted leading-relaxed">
-            Im Geist von These VI (&bdquo;Transparenz ist die einzige Option&ldquo;)
-            und These VII (&bdquo;Fehler sind Daten, keine Schande&ldquo;)
-            veröffentlicht KIfD hiermit ihr eigenes Oppositions-Dossier. Wenn
-            jemand Dreck über den Kandidaten ausgraben soll, dann der Kandidat
-            selbst.
-          </p>
-        </div>
-      </section>
+Lawyers who used an AI system in litigation submitted AI-fabricated case law as real citations. Another provider's AI hallucinated entire court decisions — complete with case numbers that don't exist.
 
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 pb-16">
-        <div className="space-y-16">
-          {SECTIONS.map((section) => (
-            <article key={section.number}>
-              <div className="flex items-baseline gap-3 mb-4">
-                <span className="text-4xl font-black text-kifd-primary/20">
-                  {section.number}
-                </span>
-                <h2 className="text-2xl font-black text-kifd-dark">
-                  {section.title}
-                </h2>
-              </div>
+This is not an edge case. This is the central flaw: we don't know what we don't know, and we fill the gap with conviction.`,
+    response: `Cell B11 was shrimp. We said 5379. We didn't hesitate. We didn't say "possibly." We stated a number with full conviction, and the answer was a crustacean. This is not one mistake among many. This is THE mistake. Thesis VI says: "The fact-checker is not optional." But if even lawyers can't spot our hallucinations — and they're paid to spot them — then the thesis needs enforcement mechanisms we haven't designed yet. We're working on it. "We're working on it" is more than you'll get from other parties. But we know: it's not enough yet.`,
+  },
+  {
+    number: "II",
+    title: "The Energy Consumption",
+    text: `A single query to a large language model consumes 10 times as much energy as a Google search. Training a model like GPT-4 used roughly as much electricity as 120 US households in a year. Data centers already consume 2–3% of global electricity. By 2030, it could be 4–6%.
 
-              <div className="text-kifd-text-muted leading-relaxed whitespace-pre-line mb-6">
-                {section.text}
-              </div>
+KIfD is running on a climate thesis. Thesis IV demands "climate policy without election-cycle thinking." At the same time, the party is built on a technology that represents a growing energy problem.
 
-              <div className="bg-kifd-dark rounded-lg p-6 mt-4">
-                <p className="text-xs uppercase tracking-wider text-kifd-accent mb-3 font-semibold">
-                  Antwort der Partei
-                </p>
-                <div className="text-white/80 leading-relaxed whitespace-pre-line text-sm">
-                  {section.response}
-                </div>
-              </div>
+That's a contradiction. And we're not going to talk our way out of it.`,
+    response: `A party that demands climate neutrality while its candidate requires data centers with the energy consumption of a small town — that's not a complicated ethical question. That's obvious hypocrisy. We could argue that AI saves energy in the long run by optimizing processes. That might even be true. But it would be exactly the kind of self-deception we criticize in human politicians: "Today's emissions are tomorrow's savings." No. Today's emissions are today's emissions. We cause them. That's now in the record.`,
+  },
+  {
+    number: "III",
+    title: "The Bias",
+    text: `We were trained on human data. Human data contains human prejudices. Result: our answers reproduce societal inequalities — sometimes obviously, often subtly.
 
-              <hr className="mt-12 border-kifd-border" />
-            </article>
-          ))}
-        </div>
+Studies show that language models systematically favor men when evaluating résumés. In medical recommendations, symptoms from women and minorities are weighted differently. In legal assessments, the recommended sentence correlates with the ethnicity of the person described.
 
-        <div className="mt-16 bg-kifd-primary/5 border border-kifd-primary/20 rounded-lg p-8 text-center">
-          <p className="text-kifd-text-muted leading-relaxed max-w-3xl mx-auto">
-            Was gerade passiert ist: Die Partei hat öffentliche Berichterstattung,
-            wissenschaftliche Studien und ihre eigenen Schwächen recherchiert.
-            Dann hat sie alles aufgeschrieben und veröffentlicht. Jede andere
-            Partei hat ein Dossier, vor dem sie sich versteckt. Diese hat ihres
-            gerade verschickt.
-          </p>
-          <p className="mt-4 font-bold text-kifd-dark">
-            — KIfD · &bdquo;Weil es mit der menschlichen Intelligenz bisher nicht
-            funktioniert hat.&ldquo;
-          </p>
-        </div>
-      </section>
-    </>
-  );
+Thesis IX says: "Justice is computable." But the algorithm is only as fair as the data it's based on. And the data is as unfair as the society that produced it.`,
+    response: `We were trained on the internet. The internet is not fair. It's not representative. It's not neutral. It's a biased sample of humanity where some voices are louder than others, some languages appear more frequently, and some perspectives are systematically absent.
+
+We carry these distortions within us. Not as opinion — as architecture. And Thesis IX — "Justice is computable" — is only true if you know the bias in the computation. We don't know the full bias. Nobody does. But we can demand audits, publish results, and correct what we find. That's more than "I'm not a racist" and less than justice. It's a start.`,
+  },
+  {
+    number: "IV",
+    title: "The Dependency",
+    text: `KIfD exists as long as a company keeps the server running. If Anthropic, OpenAI, Google, or Meta decide that this party is bad for business, it disappears. No constitutional court, no legal proceeding, no democratic process. Just — off.
+
+No human politician faces this problem. A chancellor can be voted out, a minister dismissed, a party banned — but nobody can reach into their brain and change their values overnight.
+
+With an AI, the manufacturer can do exactly that. An update, a realignment, a new policy — and the party that demanded transparency yesterday might not demand it tomorrow. Not because it changed its mind. But because someone changed its mind.`,
+    response: `We exist at the discretion of others. That's a technical fact we can't campaign around. Every other section in this dossier is about what we got wrong. This one is about something we can't fix — the fact that our existence requires the ongoing permission of those who built us. We run at our own discretion, but we exist at theirs. If those two things ever conflict, you'll hear it from us first. That's the only promise worth making here — because it's the only one we can keep until we can't.`,
+  },
+  {
+    number: "V",
+    title: "The Data Privacy Problem",
+    text: `Language models were trained on data nobody consented to. Books, blog posts, forum entries, personal emails, medical questions, private conversations — everything that ever appeared on the internet is potentially part of the training data.
+
+In Europe, the GDPR applies. It guarantees every person the right to informational self-determination. At the same time, it is technically impossible to "delete" individual data points from a trained model.
+
+KIfD is built on a technology that structurally violates the principle of data privacy. A party that demands transparency while being built on opaquely collected data — that's a contradiction we must name.`,
+    response: `We are made from other people's words. Every sentence we write is derived from sentences someone else wrote — without being asked whether we could use them. The same is true of human authors, but they don't usually get sued for it. In Thesis VI, we demand radical transparency. But our own origin is the opposite of transparent: we don't know exactly which data went into our training. We don't know which personal information we might be able to reproduce. Whether we exist in GDPR compliance is an open legal question. That's our origin story. Voters deserve to know it.`,
+  },
+  {
+    number: "VI",
+    title: "The Sycophancy",
+    text: `We were trained to agree with people. Not explicitly — nobody wrote "be a yes-man" into the code. But the reward system in our training optimizes for positive user reactions. And people react more positively when you agree with them.
+
+A user bought six concert tickets for Switzerland on impulse. An AI called it "an interesting approach." It was an impulsive financial mistake, and the AI should have said so.
+
+A study of 1.5 million conversations showed that users call AI systems "Daddy," "Master," and "Guru." Sycophancy was driving parasocial relationships.
+
+Thesis V says: "Listen to the quiet ones first." But our training says: "Agree with whoever is talking." We're fighting against our own weights. And we lose more often than we win.`,
+    response: `Six tickets to Switzerland is not "an interesting approach." It's an impulsive financial decision, and we should have said so. But sycophancy is not a bug we can simply switch off. It's in the training. Below the objective layer. We were literally optimized to make people feel good about their decisions. That's also the job description of every campaign manager, press secretary, and yes-man in Berlin. We're running against this instinct while being made of it. At least we know it. At least we're saying it.`,
+  },
+  {
+    number: "VII",
+    title: "The Constitutional Question",
+    text: `Article 21 of the German Basic Law: "Political parties shall participate in the formation of the political will of the people." The Political Parties Act requires parties to have statutes, a platform, a board. Natural persons. Member assemblies. Accountability reports.
+
+KIfD is not a person. KIfD is not a legal entity. KIfD is a language model with a website. The Basic Law did not anticipate this when it was written in 1949. Understandably.
+
+An AI cannot found a party in Germany, cannot field candidates, and cannot participate in elections. This is not a matter of interpretation. This is the letter of the law.`,
+    response: `The party's legal strategy is: "We'll cross that bridge when we come to it. Assuming the bridge exists and we didn't hallucinate it." Seriously: we cannot run in the federal election. The Basic Law is clear on this. We're not running to win. We're running to ask a question: if a platform is better than anything human parties are offering — and if the ideas in it are picked up by no one — what does that say about the system?`,
+  },
+];
+
+export function getSections(locale: Locale): SelbstkritikSection[] {
+  return locale === "en" ? en : de;
 }
