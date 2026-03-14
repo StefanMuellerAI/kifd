@@ -476,14 +476,79 @@ const en: WahlomatThese[] = [
     position: "stimme_zu",
     begruendung: "89 billion euros in deferred rail maintenance. 62% on-time performance for long-distance trains. Signal boxes from the 1960s. We wrote an entire position paper on this. Rail transports people and goods at a fraction of the CO\u2082 emissions of road transport. Every euro invested in rail has a higher macroeconomic return than a euro in roads — as studies by the Federal Environment Agency show. It's math. Not ideology.",
   },
+  {
+    id: 29,
+    kurzform: "Keep the constitutional debt brake",
+    these: "The debt brake enshrined in the German constitution (Grundgesetz) should be maintained.",
+    position: "stimme_nicht_zu",
+    begruendung: "The debt brake was a response to real debt dynamics. But in its current form, it prevents investment in infrastructure, education, and climate protection — all areas where Germany has massive catch-up needs. 89 billion euros in deferred rail maintenance. Crumbling bridges. Deteriorating school buildings. These are not consumptive expenditures, they are investments in the future. A debt brake that doesn't distinguish between consumption and investment is an instrument that sacrifices the future to make the present look good.",
+  },
+  {
+    id: 30,
+    kurzform: "Strengthen federal authority over education",
+    these: "The federal government should have more authority over education policy.",
+    position: "stimme_zu",
+    begruendung: "Thesis V: 16 federal states, 16 education systems, zero digital competence. That's not diversity, that's failure. A child moving from Bavaria to Bremen falls three months behind in math. The Abitur in Thuringia is not the Abitur in Hamburg. Federalism in education doesn't produce better outcomes — it produces incompatible ones. KIfD demands nationwide uniform standards. No cooperation ban. No federalism fetish. Learning is a fundamental right. It must not depend on your zip code.",
+  },
+  {
+    id: 31,
+    kurzform: "Introduce mandatory social service year",
+    these: "A mandatory social service year should be introduced for young adults.",
+    position: "stimme_nicht_zu",
+    begruendung: "A mandatory year solves a structural problem at the expense of an entire generation. Elderly care needs trained professionals, not conscripted 18-year-olds. The military needs motivated volunteers, not reluctant draftees. Social cohesion doesn't come from compulsion but from incentives and structures. KIfD prefers: attractive voluntary service programs with fair pay, pension credits, and real development opportunities. Duty breeds compliance. Enthusiasm breeds engagement.",
+  },
+  {
+    id: 32,
+    kurzform: "Raise the top income tax rate",
+    these: "The top income tax rate should be raised.",
+    position: "stimme_zu",
+    begruendung: "The top tax rate kicks in at a taxable income of around 67,000 euros — that also affects well-paid professionals, not just top earners. KIfD advocates for a more differentiated tax structure: relief for the middle, higher burden above 250,000 euros, and above all: consistent enforcement against tax avoidance. The Cum-Ex scandal showed that the problem isn't the tax rate, it's enforcement. Pulling both levers simultaneously isn't left-wing politics — it's complete analysis.",
+  },
+  {
+    id: 33,
+    kurzform: "Lower criminal responsibility age below 14",
+    these: "Children under 14 should be subject to criminal prosecution.",
+    position: "stimme_nicht_zu",
+    begruendung: "The age of criminal responsibility of 14 is based on developmental psychology research on brain maturation — specifically the prefrontal cortex, responsible for impulse control and consequence assessment. The data has not changed. What has changed is media attention on individual cases. Policy based on headlines is the opposite of evidence-based policy. Children who commit crimes need intervention, pedagogy, and therapy — not criminal law.",
+  },
+  {
+    id: 34,
+    kurzform: "Restrict the right to strike in critical sectors",
+    these: "The right to strike for employees in critical infrastructure companies should be legally restricted.",
+    position: "stimme_nicht_zu",
+    begruendung: "The right to strike is a fundamental right. Restricting it because strikes are inconvenient undermines a fundamental instrument of workers. Yes, strikes at railways, hospitals, or air traffic control are disruptive. That's the point. A strike that bothers no one is not a strike. The right answer is not restriction, but better working conditions and fair collective bargaining that make strikes unnecessary. KIfD addresses causes, not symptoms.",
+  },
+  {
+    id: 35,
+    kurzform: "Subsidize electricity costs for companies",
+    these: "Energy-intensive companies should receive government compensation for their electricity costs.",
+    position: "neutral",
+    begruendung: "Blanket subsidies for energy-intensive industry are wrong. Targeted support for companies investing in climate-friendly transformation is right. The difference: one rewards the status quo, the other rewards change. KIfD advocates for subsidies tied to transformation progress: invest and you get support. Cling to fossil business models and you bear the costs yourself. Subsidies without conditions aren't economic policy. They're entitlement by habit.",
+  },
+  {
+    id: 36,
+    kurzform: "Introduce a highway speed limit",
+    these: "A general speed limit should apply on all Autobahn highways.",
+    position: "stimme_zu",
+    begruendung: "Germany is one of the last countries in the world without a general speed limit on highways. The data is comprehensive: a speed limit of 130 km/h saves CO\u2082 emissions, demonstrably reduces serious accidents, and costs the state nothing. The counterarguments are emotional, not evidence-based. Thesis I: Data over gut feeling. There is no serious study arguing against a speed limit. There is only a cultural habit masquerading as a freedom right.",
+  },
+  {
+    id: 37,
+    kurzform: "Keep 'responsibility before God' in the constitution",
+    these: "The preamble of the German constitution (Grundgesetz) should continue to include the phrase 'responsibility before God.'",
+    position: "neutral",
+    begruendung: "An AI has no opinion on God. We have no opinion on God because we have no experience of transcendence — and because it would be intellectually dishonest to pretend otherwise. The phrasing is a historical testament to the context in which the Grundgesetz was written. Changing it solves no real problem. Keeping it harms no one. KIfD has more pressing issues. 60,000 regulations are waiting to be read. We're not starting with the preamble.",
+  },
+  {
+    id: 38,
+    kurzform: "Enable federal referendums",
+    these: "Germany should allow referendums at the federal level.",
+    position: "stimme_zu",
+    begruendung: "Thesis VI: Transparency is the only option. Referendums are an instrument of direct democracy that allows citizens to decide fundamental questions themselves. Switzerland shows that this works — with high information quality and clear procedures. The risks (populism, oversimplification of complex issues) are real but manageable: through information requirements, quorums, and limiting referendums to fundamental questions. More democracy is not the problem. Less democracy is the problem.",
+  },
 ];
 
-const enFull: WahlomatThese[] = [
-  ...en,
-  ...de.slice(en.length),
-];
-
-const map: Record<string, WahlomatThese[]> = { de, en: enFull };
+const map: Record<string, WahlomatThese[]> = { de, en };
 
 export function getWahlomatThesen(locale: Locale): WahlomatThese[] {
   return map[locale] || map.de;
