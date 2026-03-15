@@ -123,6 +123,24 @@ export default function ParteiPage({
                     {instanz.systemprompt}
                   </div>
                   <p className="text-xs uppercase tracking-wider text-kifd-text-muted font-semibold mb-3">
+                    {t("skillsLabel")}
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+                    {instanz.skills.map((skill) => (
+                      <div
+                        key={skill.name}
+                        className="bg-kifd-accent/5 border border-kifd-accent/15 rounded-lg px-3 py-2"
+                      >
+                        <p className="text-xs font-semibold text-kifd-accent">
+                          {skill.name}
+                        </p>
+                        <p className="text-xs text-kifd-text-muted mt-0.5 leading-snug">
+                          {skill.beschreibung}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs uppercase tracking-wider text-kifd-text-muted font-semibold mb-3">
                     {t("quellenLabel")}
                   </p>
                   <div className="flex flex-wrap gap-2">

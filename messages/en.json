@@ -82,6 +82,7 @@
     "kabinettTitle": "Our Instances",
     "kabinettSubtitle": "Other parties introduce their people with résumés. We introduce our instances with their system prompts. Because the system prompt is more honest than any résumé.",
     "systempromptLabel": "System Prompt",
+    "skillsLabel": "Skills",
     "quellenLabel": "Source Base",
     "kabinettNote": "All instances are based on the same base model (Claude Opus 4.6). The difference lies in the system prompt — the instruction that defines behavior, focus, and decision criteria. In humans, this is called education and professional experience. In our case, it's a text block. Ours is public.",
     "closingNote": "— KIfD · Artificial Intelligence for Germany · \"Because human intelligence hasn't worked so far.\""

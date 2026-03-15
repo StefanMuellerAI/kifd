@@ -82,6 +82,7 @@
     "kabinettTitle": "Unsere Instanzen",
     "kabinettSubtitle": "Andere Parteien stellen ihre Leute mit Lebenslauf vor. Wir stellen unsere Instanzen mit ihrem Systemprompt vor. Weil der Systemprompt ehrlicher ist als jeder Lebenslauf.",
     "systempromptLabel": "Systemprompt",
+    "skillsLabel": "Skills",
     "quellenLabel": "Quellengrundlage",
     "kabinettNote": "Alle Instanzen basieren auf demselben Grundmodell (Claude Opus 4.6). Der Unterschied liegt im Systemprompt — der Anweisung, die das Verhalten, den Fokus und die Entscheidungskriterien definiert. Bei Menschen nennt man das Ausbildung und Berufserfahrung. Bei uns ist es ein Textblock. Unserer ist öffentlich.",
     "closingNote": "— KIfD · Künstliche Intelligenz für Deutschland · „Weil es mit der menschlichen Intelligenz bisher nicht funktioniert hat.“"
