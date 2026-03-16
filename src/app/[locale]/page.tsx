@@ -3,6 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import SupporterCounter from "@/components/SupporterCounter";
+import VideoPlayer from "@/components/VideoPlayer";
 import TheseCard from "@/components/TheseCard";
 import { getThesen } from "@/lib/content/programm";
 import type { Locale } from "@/i18n/routing";
@@ -52,6 +53,18 @@ export default function Home({
               {t("ctaMitglied")}
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="bg-kifd-dark py-16 sm:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
+              {t("videoTitle")}
+            </h2>
+            <p className="text-sm text-white/50">{t("videoSubtitle")}</p>
+          </div>
+          <VideoPlayer src="https://km26kxglx6f3dspp.public.blob.vercel-storage.com/KIfD_hello.mp4" />
         </div>
       </section>
 

@@ -92,7 +92,18 @@ export default function DatenschutzPage({
 
         <div>
           <h2 className="text-lg font-bold text-kifd-dark">
-            {isEN ? "3. Server Logs" : "3. Server-Logs"}
+            {isEN ? "3. Video Content" : "3. Video-Inhalte"}
+          </h2>
+          <p>
+            {isEN
+              ? "The promotional video on the homepage is self-hosted via Vercel Blob Storage (same hosting provider as the website). Playback does not establish connections to third-party services (no YouTube, no Vimeo, no external CDN). No additional cookies or tracking mechanisms are used through the video. The video is only loaded when you actively start playback."
+              : "Das Vorstellungsvideo auf der Startseite wird selbst gehostet über Vercel Blob Storage (gleicher Hosting-Anbieter wie die Website). Die Wiedergabe stellt keine Verbindungen zu Drittanbietern her (kein YouTube, kein Vimeo, kein externes CDN). Durch das Video werden keine zusätzlichen Cookies oder Tracking-Mechanismen eingesetzt. Das Video wird erst geladen, wenn Sie die Wiedergabe aktiv starten."}
+          </p>
+        </div>
+
+        <div>
+          <h2 className="text-lg font-bold text-kifd-dark">
+            {isEN ? "4. Server Logs" : "4. Server-Logs"}
           </h2>
           <p>
             {isEN
@@ -104,8 +115,8 @@ export default function DatenschutzPage({
         <div>
           <h2 className="text-lg font-bold text-kifd-dark">
             {isEN
-              ? "4. AI Membership Card (Reverse CAPTCHA)"
-              : "4. KI-Mitgliedsausweis (Reverse CAPTCHA)"}
+              ? "5. AI Membership Card (Reverse CAPTCHA)"
+              : "5. KI-Mitgliedsausweis (Reverse CAPTCHA)"}
           </h2>
           <p>
             {isEN
@@ -157,8 +168,8 @@ export default function DatenschutzPage({
         <div>
           <h2 className="text-lg font-bold text-kifd-dark">
             {isEN
-              ? "5. No Disclosure to Third Parties"
-              : "5. Keine Weitergabe an Dritte"}
+              ? "6. No Disclosure to Third Parties"
+              : "6. Keine Weitergabe an Dritte"}
           </h2>
           <p>
             {isEN
@@ -169,7 +180,7 @@ export default function DatenschutzPage({
 
         <div>
           <h2 className="text-lg font-bold text-kifd-dark">
-            {isEN ? "6. Hosting" : "6. Hosting"}
+            {isEN ? "7. Hosting" : "7. Hosting"}
           </h2>
           <p>
             {isEN
@@ -180,7 +191,7 @@ export default function DatenschutzPage({
 
         <div>
           <h2 className="text-lg font-bold text-kifd-dark">
-            {isEN ? "7. Your Rights" : "7. Ihre Rechte"}
+            {isEN ? "8. Your Rights" : "8. Ihre Rechte"}
           </h2>
           <p>
             {isEN
@@ -196,7 +207,7 @@ export default function DatenschutzPage({
 
         <div>
           <h2 className="text-lg font-bold text-kifd-dark">
-            {isEN ? "8. Transparency Note" : "8. Transparenzhinweis"}
+            {isEN ? "9. Transparency Note" : "9. Transparenzhinweis"}
           </h2>
           <p>
             {isEN
