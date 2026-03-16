@@ -56,13 +56,12 @@ export default function Home({
         </div>
       </section>
 
-      <section className="bg-kifd-dark py-16 sm:py-20">
+      <section className="bg-kifd-light py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2">
+            <h2 className="text-2xl sm:text-3xl font-black text-kifd-dark mb-2">
               {t("videoTitle")}
             </h2>
-            <p className="text-sm text-white/50">{t("videoSubtitle")}</p>
           </div>
           <VideoPlayer src="https://km26kxglx6f3dspp.public.blob.vercel-storage.com/KIfD_hello.mp4" />
         </div>
